@@ -4,17 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Owais Gulzar | Graphic Designer Portfolio</title>
+    <meta name="description" content="Portfolio of Owais Gulzar - Professional Graphic Designer based in Abu Dhabi, UAE. Specializing in branding, print design, and social media graphics.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #ffffff; overflow-x: hidden; }
-        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #0a0a0a; 
+            color: #ffffff; 
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+        
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.2s, background 0.2s;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor.hover {
+            transform: scale(2);
+            background: rgba(102, 126, 234, 0.3);
+        }
+        
+        .cursor-dot {
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10001;
+        }
+        
+        /* Scroll Progress */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 10002;
+            transition: width 0.1s;
+        }
+        
+        /* Noise Overlay */
         .noise-overlay { 
             position: fixed; 
             top: 0; 
@@ -24,11 +75,54 @@
             pointer-events: none; 
             z-index: 9999; 
             opacity: 0.03; 
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); 
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); 
         }
         
+        /* Gradient Background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--primary), transparent);
+            top: -200px;
+            left: -200px;
+        }
+        
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--secondary), transparent);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: -5s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        
+        /* Text Effects */
         .gradient-text { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             background-clip: text; 
@@ -36,8 +130,9 @@
         
         .glitch { 
             position: relative; 
-            animation: glitch-skew 1s infinite linear alternate-reverse; 
+            display: inline-block;
         }
+        
         .glitch::before, .glitch::after { 
             content: attr(data-text); 
             position: absolute; 
@@ -45,13 +140,16 @@
             left: 0; 
             width: 100%; 
             height: 100%; 
+            background: #0a0a0a;
         }
+        
         .glitch::before { 
             left: 2px; 
             text-shadow: -2px 0 #ff00c1; 
             clip: rect(44px, 450px, 56px, 0); 
             animation: glitch-anim 5s infinite linear alternate-reverse; 
         }
+        
         .glitch::after { 
             left: -2px; 
             text-shadow: -2px 0 #00fff9; 
@@ -67,6 +165,7 @@
             80% { clip: rect(32px, 9999px, 68px, 0); } 
             100% { clip: rect(96px, 9999px, 16px, 0); } 
         }
+        
         @keyframes glitch-anim2 { 
             0% { clip: rect(65px, 9999px, 99px, 0); } 
             20% { clip: rect(4px, 9999px, 30px, 0); } 
@@ -76,25 +175,44 @@
             100% { clip: rect(12px, 9999px, 85px, 0); } 
         }
         
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
         .portfolio-item { 
             position: relative; 
             overflow: hidden; 
             cursor: pointer; 
-            border-radius: 1rem; 
+            border-radius: 1.5rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+        
         .portfolio-item img { 
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); 
             width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
+            height: 400px; 
+            object-fit: cover;
         }
+        
         .portfolio-item:hover img { 
             transform: scale(1.1); 
         }
+        
         .portfolio-overlay { 
             position: absolute; 
             inset: 0; 
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); 
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 50%, transparent 100%); 
             opacity: 0; 
             transition: opacity 0.4s ease; 
             display: flex; 
@@ -102,150 +220,349 @@
             justify-content: flex-end; 
             padding: 2rem; 
         }
+        
         .portfolio-item:hover .portfolio-overlay { 
             opacity: 1; 
         }
         
+        .portfolio-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(102, 126, 234, 0.3);
+            border: 1px solid rgba(102, 126, 234, 0.5);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-tag {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.1s;
+        }
+        
+        .portfolio-title {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-title {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.2s;
+        }
+        
+        /* Marquee */
         .marquee-container { 
             overflow: hidden; 
-            white-space: nowrap; 
+            white-space: nowrap;
+            position: relative;
         }
+        
+        .marquee-container::before,
+        .marquee-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            z-index: 2;
+        }
+        
+        .marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, #0a0a0a, transparent);
+        }
+        
+        .marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, #0a0a0a, transparent);
+        }
+        
         .marquee-content { 
             display: inline-block; 
-            animation: marquee 20s linear infinite; 
+            animation: marquee 30s linear infinite; 
         }
+        
         @keyframes marquee { 
             0% { transform: translateX(0); } 
             100% { transform: translateX(-50%); } 
         }
         
+        /* Modal */
         .modal { 
             position: fixed; 
             inset: 0; 
-            background: rgba(0,0,0,0.95); 
+            background: rgba(10,10,10,0.98); 
             z-index: 1000; 
             display: none; 
             align-items: center; 
             justify-content: center; 
             opacity: 0; 
-            transition: opacity 0.3s ease; 
+            transition: opacity 0.4s ease; 
+            backdrop-filter: blur(20px);
         }
+        
         .modal.active { 
             display: flex; 
             opacity: 1; 
         }
+        
         .modal-content { 
             max-width: 90vw; 
             max-height: 90vh; 
-            position: relative; 
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
         }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        
         .modal-close { 
             position: absolute; 
-            top: -40px; 
+            top: -60px; 
             right: 0; 
             color: #fff; 
-            font-size: 2rem; 
+            font-size: 2.5rem; 
             cursor: pointer; 
-            transition: transform 0.3s ease; 
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
         }
+        
         .modal-close:hover { 
+            background: rgba(255,255,255,0.2);
             transform: rotate(90deg); 
         }
         
+        /* Loader */
         .loader { 
             position: fixed; 
             inset: 0; 
             background: #0a0a0a; 
             z-index: 10000; 
             display: flex; 
+            flex-direction: column;
             align-items: center; 
             justify-content: center; 
-            transition: opacity 0.5s ease, visibility 0.5s ease; 
+            transition: opacity 0.8s ease, visibility 0.8s ease; 
         }
+        
         .loader.hidden { 
             opacity: 0; 
             visibility: hidden; 
         }
         
+        .loader-text {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .loader-bar {
+            width: 200px;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            margin-top: 2rem;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .loader-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            animation: load 2s ease-out forwards;
+        }
+        
+        @keyframes load {
+            to { width: 100%; }
+        }
+        
+        /* Reveal Animation */
         .reveal { 
             opacity: 0; 
-            transform: translateY(50px); 
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); 
+            transform: translateY(60px); 
+            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1); 
         }
+        
         .reveal.active { 
             opacity: 1; 
             transform: translateY(0); 
         }
         
+        /* Filter Buttons */
         .filter-btn { 
-            padding: 0.5rem 1.5rem; 
+            padding: 0.75rem 2rem; 
             border-radius: 9999px; 
             border: 1px solid rgba(255,255,255,0.2); 
             background: transparent; 
             color: #fff; 
             cursor: pointer; 
-            transition: all 0.3s ease; 
-        }
-        .filter-btn.active, .filter-btn:hover { 
-            background: #667eea; 
-            border-color: #667eea; 
-        }
-        
-        .profile-image {
+            transition: all 0.3s ease;
+            font-weight: 500;
             position: relative;
             overflow: hidden;
-            border-radius: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.25);
         }
-        .profile-image::before {
+        
+        .filter-btn::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             opacity: 0;
             transition: opacity 0.3s ease;
+            z-index: -1;
         }
-        .profile-image:hover::before {
+        
+        .filter-btn.active, .filter-btn:hover { 
+            border-color: transparent;
+            color: white;
+        }
+        
+        .filter-btn.active::before, .filter-btn:hover::before {
             opacity: 1;
         }
         
-        .skill-bar { 
-            background: rgba(255,255,255,0.1); 
-            height: 8px; 
-            border-radius: 4px; 
-            overflow: hidden; 
-        }
-        .skill-progress { 
-            height: 100%; 
-            background: linear-gradient(90deg, #667eea, #764ba2); 
-            border-radius: 4px; 
-            transition: width 1s ease; 
+        /* Profile Image */
+        .profile-image {
+            position: relative;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.25);
         }
         
-        .client-logo { 
-            filter: grayscale(100%) opacity(0.6); 
-            transition: all 0.3s ease; 
+        /* Skill Bars */
+        .skill-bar { 
+            background: rgba(255,255,255,0.1); 
+            height: 6px; 
+            border-radius: 3px; 
+            overflow: hidden;
+            position: relative;
         }
+        
+        .skill-progress { 
+            height: 100%; 
+            background: linear-gradient(90deg, var(--primary), var(--secondary)); 
+            border-radius: 3px; 
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        /* Client Logos */
+        .client-logo { 
+            filter: grayscale(100%) opacity(0.5); 
+            transition: all 0.5s ease; 
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
         .client-logo:hover { 
             filter: grayscale(0%) opacity(1); 
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Magnetic Button */
+        .magnetic-btn {
+            position: relative;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Mobile Menu */
+        #mobileMenu {
+            clip-path: circle(0% at calc(100% - 40px) 40px);
+            transition: clip-path 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        #mobileMenu.active {
+            clip-path: circle(150% at calc(100% - 40px) 40px);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cursor, .cursor-dot { display: none; }
+            body { cursor: auto; }
+            .portfolio-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    <div class="progress-bar" id="progressBar"></div>
     <div class="noise-overlay"></div>
-    <div class="loader" id="loader"><div class="text-2xl font-bold gradient-text">OWAIS GULZAR</div></div>
     
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 bg-black/50 backdrop-blur-md border-b border-white/10">
+    <div class="gradient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+    
+    <div class="loader" id="loader">
+        <div class="loader-text">OWAIS GULZAR</div>
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+    </div>
+    
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 bg-black/30 backdrop-blur-xl border-b border-white/5 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="text-2xl font-bold tracking-tighter">OWAIS<span class="text-purple-500">.</span></div>
+            <div class="text-2xl font-bold tracking-tighter magnetic-btn">OWAIS<span class="text-purple-500">.</span></div>
             <div class="hidden md:flex gap-8 text-sm font-medium">
-                <a href="#work" class="hover:text-purple-400 transition-colors">WORK</a>
-                <a href="#about" class="hover:text-purple-400 transition-colors">ABOUT</a>
-                <a href="#services" class="hover:text-purple-400 transition-colors">SERVICES</a>
-                <a href="#contact" class="hover:text-purple-400 transition-colors">CONTACT</a>
+                <a href="#work" class="nav-link hover:text-purple-400 transition-colors">WORK</a>
+                <a href="#about" class="nav-link hover:text-purple-400 transition-colors">ABOUT</a>
+                <a href="#services" class="nav-link hover:text-purple-400 transition-colors">SERVICES</a>
+                <a href="#contact" class="nav-link hover:text-purple-400 transition-colors">CONTACT</a>
             </div>
-            <button class="md:hidden text-white" onclick="toggleMenu()">
+            <button class="md:hidden text-white magnetic-btn" onclick="toggleMenu()" aria-label="Toggle Menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
@@ -253,66 +570,56 @@
         </div>
     </nav>
 
-    <div id="mobileMenu" class="fixed inset-0 bg-black z-40 hidden flex-col items-center justify-center gap-8 text-2xl font-bold">
+    <div id="mobileMenu" class="fixed inset-0 bg-black/95 z-40 flex flex-col items-center justify-center gap-8 text-3xl font-bold">
         <a href="#work" onclick="toggleMenu()" class="hover:text-purple-400 transition-colors">WORK</a>
         <a href="#about" onclick="toggleMenu()" class="hover:text-purple-400 transition-colors">ABOUT</a>
         <a href="#services" onclick="toggleMenu()" class="hover:text-purple-400 transition-colors">SERVICES</a>
         <a href="#contact" onclick="toggleMenu()" class="hover:text-purple-400 transition-colors">CONTACT</a>
     </div>
 
-    <!-- Hero Section with Profile -->
+    <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative px-6 pt-20 overflow-hidden">
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
-        </div>
-        
         <div class="relative z-10 max-w-7xl mx-auto w-full">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Left: Text Content -->
                 <div class="order-2 md:order-1 text-center md:text-left">
                     <p class="text-purple-400 text-sm tracking-[0.3em] mb-4 reveal">GRAPHIC DESIGNER</p>
-                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-none tracking-tighter reveal">
+                    <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-none tracking-tighter reveal">
                         <span class="glitch" data-text="OWAIS">OWAIS</span><br>
                         <span class="gradient-text">GULZAR</span>
                     </h1>
-                    <p class="text-gray-400 text-lg leading-relaxed mb-8 reveal" style="animation-delay: 0.2s;">
-                        Creative Graphic Designer at <span class="text-blue-400 font-semibold">Zain Star Printing & Advertising</span>. 
-                        Specializing in brand identity, social media campaigns, and print media design. 
-                        Transforming ideas into visual stories that captivate and convert.
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8 reveal max-w-lg">
+                        Creative Graphic Designer with 3+ years of experience in branding, print media, and digital design. Currently crafting visual experiences at Zain Star Printing & Advertising in Abu Dhabi.
                     </p>
                     
-                    <div class="flex flex-wrap gap-4 mb-8 justify-center md:justify-start reveal" style="animation-delay: 0.3s;">
-                        <span class="px-4 py-2 bg-white/5 rounded-full text-sm border border-white/10">
+                    <div class="flex flex-wrap gap-4 mb-8 justify-center md:justify-start reveal">
+                        <span class="px-4 py-2 bg-white/5 rounded-full text-sm border border-white/10 backdrop-blur-sm">
                             <i class="fas fa-map-marker-alt text-purple-400 mr-2"></i>Abu Dhabi, UAE
                         </span>
-                        <span class="px-4 py-2 bg-white/5 rounded-full text-sm border border-white/10">
-                            <i class="fas fa-briefcase text-purple-400 mr-2"></i>4+ Years
+                        <span class="px-4 py-2 bg-white/5 rounded-full text-sm border border-white/10 backdrop-blur-sm">
+                            <i class="fas fa-briefcase text-purple-400 mr-2"></i>3+ Years Exp.
                         </span>
-                        <span class="px-4 py-2 bg-white/5 rounded-full text-sm border border-white/10">
+                        <span class="px-4 py-2 bg-white/5 rounded-full text-sm border border-white/10 backdrop-blur-sm">
                             <i class="fas fa-palette text-purple-400 mr-2"></i>50+ Projects
                         </span>
                     </div>
                     
-                    <div class="flex gap-4 justify-center md:justify-start reveal" style="animation-delay: 0.4s;">
-                        <a href="#work" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-purple-400 hover:text-white transition-all duration-300">
+                    <div class="flex gap-4 justify-center md:justify-start reveal">
+                        <a href="#work" class="magnetic-btn px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-purple-400 hover:text-white transition-all duration-300">
                             VIEW WORK
                         </a>
-                        <a href="#contact" class="px-8 py-4 border border-white/30 rounded-full hover:bg-white/10 transition-all duration-300">
+                        <a href="#contact" class="magnetic-btn px-8 py-4 border border-white/30 rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
                             HIRE ME
                         </a>
                     </div>
                 </div>
                 
-                <!-- Right: Profile Image -->
                 <div class="order-1 md:order-2 flex justify-center reveal">
-                    <div class="relative">
-                        <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur opacity-30"></div>
-                        <div class="profile-image relative w-80 h-96 md:w-96 md:h-[28rem]">
-                           <img src="images/profile.jpg" alt="Zain Star Hiring"> alt="Owais Gulzar" class="w-full h-full object-cover">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
+                        <div class="profile-image relative w-80 h-96 md:w-96 md:h-[28rem] bg-gray-800 flex items-center justify-center">
+                            <i class="fas fa-user text-8xl text-gray-600"></i>
                         </div>
-                        <!-- Floating Badge -->
-                        <div class="absolute -bottom-4 -right-4 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-xl">
+                        <div class="absolute -bottom-6 -right-6 bg-white/10 backdrop-blur-xl border border-white/20 px-6 py-4 rounded-2xl shadow-2xl">
                             <div class="flex items-center gap-3">
                                 <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                                 <span class="text-sm font-medium">Available for Work</span>
@@ -324,275 +631,113 @@
         </div>
     </section>
 
+    <!-- Marquee -->
     <div class="py-8 border-y border-white/10 bg-white/5 backdrop-blur-sm">
         <div class="marquee-container">
             <div class="marquee-content text-4xl font-bold text-white/20" style="font-family: 'Space Grotesk', sans-serif;">
-                ZAIN STAR • WTT TRAVEL • BAM SERVICES • JR ADVERTISING • BRANDING • SOCIAL MEDIA • PRINT DESIGN • ILLUSTRATOR • PHOTOSHOP •
+                BRANDING • LOGO DESIGN • PRINT MEDIA • SOCIAL MEDIA • MENU DESIGN • PACKAGING • STATIONERY • ILLUSTRATOR • PHOTOSHOP •
             </div>
         </div>
     </div>
 
-    <!-- Clients Section -->
-    <section class="py-20 px-6 bg-white/5">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-12 reveal" style="font-family: 'Space Grotesk', sans-serif;">TRUSTED BY</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center reveal">
-                <div class="client-logo bg-white/5 p-6 rounded-xl border border-white/10">
-                    <h3 class="text-xl font-bold text-blue-400">ZAIN STAR</h3>
-                    <p class="text-xs text-gray-500 mt-1">Printing & Advertising</p>
-                </div>
-                <div class="client-logo bg-white/5 p-6 rounded-xl border border-white/10">
-                    <h3 class="text-xl font-bold text-green-400">WTT</h3>
-                    <p class="text-xs text-gray-500 mt-1">Typing & Travel</p>
-                </div>
-                <div class="client-logo bg-white/5 p-6 rounded-xl border border-white/10">
-                    <h3 class="text-xl font-bold text-teal-400">BAM</h3>
-                    <p class="text-xs text-gray-500 mt-1">Business Services</p>
-                </div>
-                <div class="client-logo bg-white/5 p-6 rounded-xl border border-white/10">
-                    <h3 class="text-xl font-bold text-orange-400">JR.</h3>
-                    <p class="text-xs text-gray-500 mt-1">Advertising Agency</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Portfolio Section -->
     <section id="work" class="py-32 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 reveal">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal">
                 <div>
+                    <p class="text-purple-400 text-sm tracking-[0.3em] mb-4">PORTFOLIO</p>
                     <h2 class="text-5xl md:text-6xl font-bold mb-4" style="font-family: 'Space Grotesk', sans-serif;">SELECTED<br>WORKS</h2>
-                    <p class="text-gray-400">Click any image to view in full size</p>
                 </div>
-                <div class="flex flex-wrap gap-2 mt-6 md:mt-0">
-                    <button class="filter-btn active" onclick="filterPortfolio('all')">All</button>
-                    <button class="filter-btn" onclick="filterPortfolio('social')">Social Media</button>
-                    <button class="filter-btn" onclick="filterPortfolio('print')">Print</button>
-                    <button class="filter-btn" onclick="filterPortfolio('branding')">Branding</button>
+                <div class="flex flex-wrap gap-3 mt-6 md:mt-0">
+                    <button class="filter-btn active" onclick="filterPortfolio('all', this)">All</button>
+                    <button class="filter-btn" onclick="filterPortfolio('branding', this)">Branding</button>
+                    <button class="filter-btn" onclick="filterPortfolio('print', this)">Print</button>
+                    <button class="filter-btn" onclick="filterPortfolio('social', this)">Social Media</button>
                 </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
-                <!-- Zain Star - Hiring Poster -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
-                    <img src="file:///D:/AWAIS/AWAIS/Z/zain/Zain%20-%20Hiring%20Poster%20-%20Female%20Accountant.jpg" alt="Zain Star Hiring">
-                    <div class="portfolio-overlay">
-                        <span class="text-blue-400 text-sm font-medium mb-2">ZAIN STAR • BRANDING</span>
-                        <h3 class="text-2xl font-bold">Hiring Poster</h3>
-                        <p class="text-gray-300 text-sm mt-2">Female Accountant Recruitment</p>
-                    </div>
-                </div>
-
-                <!-- WTT New Year -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)" style="transition-delay: 0.1s;">
-                    <img src="file:///D:/AWAIS/AWAIS/New%20folder%202/wt%20new%20year%20post.jpg" alt="WTT New Year">
-                    <div class="portfolio-overlay">
-                        <span class="text-green-400 text-sm font-medium mb-2">WTT TRAVEL • SOCIAL MEDIA</span>
-                        <h3 class="text-2xl font-bold">New Year 2026</h3>
-                        <p class="text-gray-300 text-sm mt-2">Travel Agency Campaign</p>
-                    </div>
-                </div>
-
-                <!-- Fabric Printing Machine -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="print" onclick="openModal(this)" style="transition-delay: 0.2s;">
-                    <img src="file:///D:/AWAIS/AWAIS/New%20folder%202/FABRIC%20PRINTING%20MACHINE%20ZAIN%20STAR%20POST-01.jpg" alt="Fabric Printing">
-                    <div class="portfolio-overlay">
-                        <span class="text-blue-400 text-sm font-medium mb-2">ZAIN STAR • PRINT</span>
-                        <h3 class="text-2xl font-bold">Fabric Printing Machine</h3>
-                        <p class="text-gray-300 text-sm mt-2">Equipment Promotion</p>
-                    </div>
-                </div>
-
-                <!-- Eid Poster -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)">
-                    <img src="file:///D:/AWAIS/AWAIS/New%20folder%202/EID%20POSTER.png" alt="Eid Poster">
-                    <div class="portfolio-overlay">
-                        <span class="text-purple-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
-                        <h3 class="text-2xl font-bold">Creative Eid Concept</h3>
-                        <p class="text-gray-300 text-sm mt-2">Modern Visual Design</p>
-                    </div>
-                </div>
-
-                <!-- Business Card -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="print" onclick="openModal(this)" style="transition-delay: 0.1s;">
-                    <img src="file:///D:/AWAIS/AWAIS/New%20folder%202/Business%20Card%20Post_Folder/Business%20Card%20Post_Folder/Business%20Card%20Post-01.jpg" alt="Business Cards">
-                    <div class="portfolio-overlay">
-                        <span class="text-orange-400 text-sm font-medium mb-2">JR ADVERTISING • PRINT</span>
-                        <h3 class="text-2xl font-bold">Business Card Design</h3>
-                        <p class="text-gray-300 text-sm mt-2">Promotional Offer</p>
-                    </div>
-                </div>
-
-                <!-- Zain Star Eid 02 -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)" style="transition-delay: 0.2s;">
-                    <img src="file:///D:/AWAIS/AWAIS/Z/zain/post%20eid-02.jpg" alt="Eid 02">
-                    <div class="portfolio-overlay">
-                        <span class="text-blue-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
-                        <h3 class="text-2xl font-bold">Eid Mubarak</h3>
-                        <p class="text-gray-300 text-sm mt-2">3D Rendered Design</p>
-                    </div>
-                </div>
-
-                <!-- Zain Star Eid 01 -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)">
-                    <img src="file:///D:/AWAIS/AWAIS/Z/zain/post%20eid-01.jpg" alt="Eid 01">
-                    <div class="portfolio-overlay">
-                        <span class="text-blue-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
-                        <h3 class="text-2xl font-bold">Eid Ul Fitr</h3>
-                        <p class="text-gray-300 text-sm mt-2">Traditional Lantern Design</p>
-                    </div>
-                </div>
-
-                <!-- BAM Services -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)" style="transition-delay: 0.1s;">
-                    <img src="file:///D:/AWAIS/AWAIS/B/B%20A%20M%20BUSINESS%20SERVICES.pdf/B%20A%20M%20BUSINESS%20SERVICES%20-%20POST-01.jpg" alt="BAM Services">
-                    <div class="portfolio-overlay">
-                        <span class="text-teal-400 text-sm font-medium mb-2">BAM • BRANDING</span>
-                        <h3 class="text-2xl font-bold">Government Services</h3>
-                        <p class="text-gray-300 text-sm mt-2">Corporate Identity</p>
-                    </div>
-                </div>
-
-                <!-- Ramadan 2025 -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)" style="transition-delay: 0.2s;">
-                    <img src="file:///D:/AWAIS/AWAIS/Z/zain/RAMADAN%202025%20POSTER-01.jpg" alt="Ramadan 2025">
-                    <div class="portfolio-overlay">
-                        <span class="text-blue-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
-                        <h3 class="text-2xl font-bold">Ramadan 2025</h3>
-                        <p class="text-gray-300 text-sm mt-2">Islamic Calligraphy</p>
-                    </div>
-                </div>
-
-                <!-- Eid Al Adha -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)">
-                    <img src="file:///D:/AWAIS/AWAIS/New%20folder%202/Eid-Al-Adha%20posts-03.jpg" alt="Eid Al Adha">
-                    <div class="portfolio-overlay">
-                        <span class="text-blue-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
-                        <h3 class="text-2xl font-bold">Eid Al Adha 2024</h3>
-                        <p class="text-gray-300 text-sm mt-2">Festive Celebration</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 px-6 bg-white/5">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center reveal" style="font-family: 'Space Grotesk', sans-serif;">
-                SERVICES I<br><span class="gradient-text">OFFER</span>
-            </h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all reveal">
-                    <i class="fas fa-paint-brush text-4xl text-purple-400 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-3">Graphic Design</h3>
-                    <ul class="text-gray-400 space-y-2 text-sm">
-                        <li>• Logo Design & Branding</li>
-                        <li>• Social Media Graphics</li>
-                        <li>• Posters & Flyers</li>
-                        <li>• Brochures & Catalogs</li>
-                    </ul>
-                </div>
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-blue-500/50 transition-all reveal" style="transition-delay: 0.1s;">
-                    <i class="fas fa-print text-4xl text-blue-400 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-3">Print Media</h3>
-                    <ul class="text-gray-400 space-y-2 text-sm">
-                        <li>• Business Cards</li>
-                        <li>• Billboards & Rollups</li>
-                        <li>• SAV & Flex Banners</li>
-                        <li>• Large Format Printing</li>
-                    </ul>
-                </div>
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-pink-500/50 transition-all reveal" style="transition-delay: 0.2s;">
-                    <i class="fas fa-ad text-4xl text-pink-400 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-3">Advertising</h3>
-                    <ul class="text-gray-400 space-y-2 text-sm">
-                        <li>• DTF Printing</li>
-                        <li>• T-Shirt Customization</li>
-                        <li>• Souvenirs & Gifts</li>
-                        <li>• Promotional Materials</li>
-                    </ul>
-                </div>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Portfolio items will be rendered here -->
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-32 px-6">
+    <section id="about" class="py-32 px-6 bg-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="reveal">
+                    <p class="text-purple-400 text-sm tracking-[0.3em] mb-4">ABOUT ME</p>
                     <h2 class="text-5xl md:text-6xl font-bold mb-8" style="font-family: 'Space Grotesk', sans-serif;">
-                        ABOUT<br><span class="gradient-text">ME</span>
+                        CREATIVE<br><span class="gradient-text">DESIGNER</span>
                     </h2>
                     <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                        I'm Owais Gulzar, a passionate Graphic Designer currently working at <span class="text-blue-400 font-semibold">Zain Star Printing & Advertising L.L.C</span> in Abu Dhabi, UAE. With over 3 years of experience, I specialize in creating compelling visual designs that help businesses stand out.
+                        I'm Owais Gulzar, a passionate Graphic Designer based in Abu Dhabi with over 3 years of professional experience. I specialize in creating compelling visual designs that help businesses stand out.
                     </p>
                     <p class="text-gray-400 leading-relaxed mb-8">
-                        My expertise spans across brand identity, social media marketing, print media, and large format printing. I have successfully delivered projects for major UAE clients including government services, travel agencies, and advertising firms.
+                        Currently working as Senior Graphic Designer at Zain Star Printing & Advertising LLC. Previously worked at Al Hayat Printing Press. I have successfully delivered projects for major UAE clients including real estate, food & beverage, and corporate sectors.
                     </p>
                     
-                    <div class="space-y-4 mb-8">
+                    <div class="space-y-6 mb-8">
                         <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm">Adobe Illustrator</span>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium">Adobe Illustrator</span>
                                 <span class="text-sm text-gray-500">95%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
+                                <div class="skill-progress" data-width="95%"></div>
                             </div>
                         </div>
                         <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm">Adobe Photoshop</span>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium">Adobe Photoshop</span>
                                 <span class="text-sm text-gray-500">90%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
+                                <div class="skill-progress" data-width="90%"></div>
                             </div>
                         </div>
                         <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm">Branding & Identity</span>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium">Branding & Identity</span>
                                 <span class="text-sm text-gray-500">85%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
+                                <div class="skill-progress" data-width="85%"></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 bg-white/10 rounded-full text-sm">Illustrator</span>
-                        <span class="px-4 py-2 bg-white/10 rounded-full text-sm">Photoshop</span>
-                        <span class="px-4 py-2 bg-white/10 rounded-full text-sm">Branding</span>
-                        <span class="px-4 py-2 bg-white/10 rounded-full text-sm">Social Media</span>
-                        <span class="px-4 py-2 bg-white/10 rounded-full text-sm">Print Design</span>
+                        <span class="px-4 py-2 bg-white/10 rounded-full text-sm border border-white/10">Illustrator</span>
+                        <span class="px-4 py-2 bg-white/10 rounded-full text-sm border border-white/10">Photoshop</span>
+                        <span class="px-4 py-2 bg-white/10 rounded-full text-sm border border-white/10">InDesign</span>
+                        <span class="px-4 py-2 bg-white/10 rounded-full text-sm border border-white/10">Branding</span>
+                        <span class="px-4 py-2 bg-white/10 rounded-full text-sm border border-white/10">Print Design</span>
                     </div>
                 </div>
                 
                 <div class="reveal">
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
-                            <h4 class="text-4xl font-bold text-purple-400 mb-2">50+</h4>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-purple-500/10 to-purple-600/10 p-8 rounded-3xl border border-purple-500/20 text-center">
+                            <h4 class="text-5xl font-bold text-purple-400 mb-2">50+</h4>
                             <p class="text-gray-400 text-sm">Projects Completed</p>
                         </div>
-                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
-                            <h4 class="text-4xl font-bold text-blue-400 mb-2">4</h4>
-                            <p class="text-gray-400 text-sm">Major Clients</p>
-                        </div>
-                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
-                            <h4 class="text-4xl font-bold text-pink-400 mb-2">3+</h4>
+                        <div class="bg-gradient-to-br from-blue-500/10 to-blue-600/10 p-8 rounded-3xl border border-blue-500/20 text-center">
+                            <h4 class="text-5xl font-bold text-blue-400 mb-2">3+</h4>
                             <p class="text-gray-400 text-sm">Years Experience</p>
                         </div>
-                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
-                            <h4 class="text-4xl font-bold text-green-400 mb-2">100%</h4>
-                            <p class="text-gray-400 text-sm">Client Satisfaction</p>
+                        <div class="bg-gradient-to-br from-pink-500/10 to-pink-600/10 p-8 rounded-3xl border border-pink-500/20 text-center">
+                            <h4 class="text-5xl font-bold text-pink-400 mb-2">10+</h4>
+                            <p class="text-gray-400 text-sm">Happy Clients</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-500/10 to-green-600/10 p-8 rounded-3xl border border-green-500/20 text-center">
+                            <h4 class="text-5xl font-bold text-green-400 mb-2">100%</h4>
+                            <p class="text-gray-400 text-sm">Satisfaction</p>
                         </div>
                     </div>
                     
-                    <div class="mt-8 bg-white/5 p-6 rounded-2xl border border-white/10">
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
                         <h4 class="font-bold mb-4 text-gray-300">Languages</h4>
                         <div class="flex flex-wrap gap-2">
                             <span class="px-3 py-1 bg-white/10 rounded-full text-sm flex items-center gap-2">
@@ -614,9 +759,109 @@
         </div>
     </section>
 
+    <!-- Services Section -->
+    <section id="services" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <p class="text-purple-400 text-sm tracking-[0.3em] mb-4">SERVICES</p>
+                <h2 class="text-5xl md:text-6xl font-bold" style="font-family: 'Space Grotesk', sans-serif;">
+                    WHAT I<br><span class="gradient-text">OFFER</span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-purple-500/50 transition-all duration-500 reveal hover:transform hover:scale-105">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-paint-brush text-3xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Brand Identity</h3>
+                    <ul class="text-gray-400 space-y-3">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400 text-xs"></i> Logo Design</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400 text-xs"></i> Brand Guidelines</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400 text-xs"></i> Visual Identity</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400 text-xs"></i> Business Cards</li>
+                    </ul>
+                </div>
+                
+                <div class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-blue-500/50 transition-all duration-500 reveal hover:transform hover:scale-105" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-print text-3xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Print Media</h3>
+                    <ul class="text-gray-400 space-y-3">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400 text-xs"></i> Menu Design</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400 text-xs"></i> Brochures & Flyers</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400 text-xs"></i> Stationery</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400 text-xs"></i> Packaging</li>
+                    </ul>
+                </div>
+                
+                <div class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-pink-500/50 transition-all duration-500 reveal hover:transform hover:scale-105" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-pink-500/20 to-pink-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-share-alt text-3xl text-pink-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Digital Design</h3>
+                    <ul class="text-gray-400 space-y-3">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-400 text-xs"></i> Social Media Posts</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-400 text-xs"></i> Marketing Materials</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-400 text-xs"></i> Ad Campaigns</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-400 text-xs"></i> Web Graphics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="py-32 px-6 bg-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <p class="text-purple-400 text-sm tracking-[0.3em] mb-4">EXPERIENCE</p>
+                <h2 class="text-5xl md:text-6xl font-bold" style="font-family: 'Space Grotesk', sans-serif;">
+                    WORK<br><span class="gradient-text">HISTORY</span>
+                </h2>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10 reveal">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-purple-400">Senior Graphic Designer</h3>
+                            <p class="text-gray-400">Zain Star Printing & Advertising LLC</p>
+                        </div>
+                        <span class="px-4 py-2 bg-purple-500/20 rounded-full text-sm text-purple-300 mt-2 md:mt-0">June 2023 - Present</span>
+                    </div>
+                    <ul class="text-gray-400 space-y-2">
+                        <li>• Collaborate with clients to understand project requirements and brand guidelines</li>
+                        <li>• Design logos, graphics, and marketing materials using Adobe Illustrator and Photoshop</li>
+                        <li>• Produce high-quality designs for both print and digital platforms</li>
+                        <li>• Manage multiple projects and meet tight deadlines</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10 reveal" style="transition-delay: 0.1s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-400">Graphic Designer</h3>
+                            <p class="text-gray-400">Al Hayat Printing Press - Abu Dhabi, UAE</p>
+                        </div>
+                        <span class="px-4 py-2 bg-blue-500/20 rounded-full text-sm text-blue-300 mt-2 md:mt-0">Sep 2022 - June 2023</span>
+                    </div>
+                    <ul class="text-gray-400 space-y-2">
+                        <li>• Developed creative design concepts based on client requirements</li>
+                        <li>• Created logos, branding materials, and marketing content</li>
+                        <li>• Produced graphics for print and digital platforms</li>
+                        <li>• Collaborated with team members to deliver projects on time</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
-    <section id="contact" class="py-32 px-6 bg-white/5">
+    <section id="contact" class="py-32 px-6">
         <div class="max-w-4xl mx-auto text-center">
+            <p class="text-purple-400 text-sm tracking-[0.3em] mb-4 reveal">GET IN TOUCH</p>
             <h2 class="text-5xl md:text-7xl font-bold mb-8 reveal" style="font-family: 'Space Grotesk', sans-serif;">
                 LET'S WORK<br><span class="gradient-text">TOGETHER</span>
             </h2>
@@ -625,65 +870,73 @@
             </p>
             
             <div class="grid md:grid-cols-3 gap-6 mb-12 reveal">
-                <a href="tel:+971509341900" class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all group hover:transform hover:scale-105">
-                    <i class="fas fa-phone text-2xl text-purple-400 mb-3 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="font-bold mb-1">Phone</h3>
+                <a href="tel:+971509341900" class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-purple-500/50 transition-all hover:transform hover:scale-105">
+                    <div class="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-phone text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Phone</h3>
                     <p class="text-gray-400 text-sm">+971 50 934 1900</p>
                 </a>
-                <a href="mailto:agul200532@gmail.com" class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all group hover:transform hover:scale-105">
-                    <i class="fas fa-envelope text-2xl text-blue-400 mb-3 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="font-bold mb-1">Email</h3>
+                
+                <a href="mailto:agul200532@gmail.com" class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-blue-500/50 transition-all hover:transform hover:scale-105">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-envelope text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Email</h3>
                     <p class="text-gray-400 text-sm">agul200532@gmail.com</p>
                 </a>
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:transform hover:scale-105 transition-all">
-                    <i class="fas fa-map-marker-alt text-2xl text-pink-400 mb-3"></i>
-                    <h3 class="font-bold mb-1">Location</h3>
+                
+                <div class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-pink-500/50 transition-all hover:transform hover:scale-105">
+                    <div class="w-16 h-16 rounded-2xl bg-pink-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-map-marker-alt text-2xl text-pink-400"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Location</h3>
                     <p class="text-gray-400 text-sm">Abu Dhabi, UAE</p>
                 </div>
             </div>
             
-            <form class="space-y-6 reveal text-left max-w-xl mx-auto bg-white/5 p-8 rounded-2xl border border-white/10" onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent to Owais.');">
+            <form class="space-y-6 text-left max-w-2xl mx-auto bg-white/5 p-8 md:p-12 rounded-3xl border border-white/10 backdrop-blur-sm reveal" id="contactForm">
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-medium mb-2 text-gray-400">Name</label>
-                        <input type="text" placeholder="Your Name" class="w-full bg-black/20 border border-white/10 rounded-lg px-6 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition-colors">
+                        <label class="block text-sm font-medium mb-3 text-gray-400">Your Name</label>
+                        <input type="text" required placeholder="John Doe" class="w-full bg-black/20 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition-colors">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-2 text-gray-400">Email</label>
-                        <input type="email" placeholder="Your Email" class="w-full bg-black/20 border border-white/10 rounded-lg px-6 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition-colors">
+                        <label class="block text-sm font-medium mb-3 text-gray-400">Email Address</label>
+                        <input type="email" required placeholder="john@example.com" class="w-full bg-black/20 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition-colors">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium mb-2 text-gray-400">Project Type</label>
-                    <select class="w-full bg-black/20 border border-white/10 rounded-lg px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-colors">
+                    <label class="block text-sm font-medium mb-3 text-gray-400">Project Type</label>
+                    <select required class="w-full bg-black/20 border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
                         <option value="" class="bg-gray-900">Select a service</option>
-                        <option value="logo" class="bg-gray-900">Logo Design</option>
-                        <option value="branding" class="bg-gray-900">Branding</option>
-                        <option value="social" class="bg-gray-900">Social Media Graphics</option>
-                        <option value="print" class="bg-gray-900">Print Media</option>
+                        <option value="branding" class="bg-gray-900">Brand Identity</option>
+                        <option value="print" class="bg-gray-900">Print Design</option>
+                        <option value="digital" class="bg-gray-900">Digital Design</option>
+                        <option value="other" class="bg-gray-900">Other</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium mb-2 text-gray-400">Message</label>
-                    <textarea placeholder="Tell me about your project..." rows="4" class="w-full bg-black/20 border border-white/10 rounded-lg px-6 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition-colors"></textarea>
+                    <label class="block text-sm font-medium mb-3 text-gray-400">Message</label>
+                    <textarea required placeholder="Tell me about your project..." rows="5" class="w-full bg-black/20 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-purple-500 transition-colors resize-none"></textarea>
                 </div>
-                <button type="submit" class="w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold rounded-lg hover:from-purple-500 hover:to-blue-500 transition-all duration-300">
-                    SEND MESSAGE <i class="fas fa-paper-plane ml-2"></i>
+                <button type="submit" class="w-full py-5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold rounded-xl hover:from-purple-500 hover:to-blue-500 transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-3">
+                    SEND MESSAGE <i class="fas fa-paper-plane"></i>
                 </button>
             </form>
             
             <div class="mt-16 pt-16 border-t border-white/10 reveal">
-                <div class="flex justify-center gap-6 mb-8">
-                    <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-purple-600 transition-all duration-300">
+                <div class="flex justify-center gap-4 mb-8">
+                    <a href="#" class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center hover:bg-purple-600 transition-all duration-300 hover:scale-110 border border-white/10">
                         <i class="fab fa-behance text-xl"></i>
                     </a>
-                    <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-pink-600 transition-all duration-300">
+                    <a href="#" class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center hover:bg-pink-600 transition-all duration-300 hover:scale-110 border border-white/10">
                         <i class="fab fa-dribbble text-xl"></i>
                     </a>
-                    <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 transition-all duration-300">
+                    <a href="#" class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 transition-all duration-300 hover:scale-110 border border-white/10">
                         <i class="fab fa-linkedin-in text-xl"></i>
                     </a>
-                    <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-purple-600 transition-all duration-300">
+                    <a href="#" class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center hover:bg-purple-600 transition-all duration-300 hover:scale-110 border border-white/10">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
                 </div>
@@ -697,80 +950,276 @@
     <div id="imageModal" class="modal" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeModal()">&times;</span>
-            <img id="modalImage" src="" alt="Full size" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl">
-            <div class="mt-4 text-center">
-                <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
+            <img id="modalImage" src="" alt="Full size" class="max-w-full max-h-[80vh] rounded-2xl shadow-2xl">
+            <div class="mt-6 text-center">
+                <h3 id="modalTitle" class="text-3xl font-bold mb-2"></h3>
                 <p id="modalDesc" class="text-gray-400"></p>
             </div>
         </div>
     </div>
 
     <script>
-        window.addEventListener('load', () => { 
-            setTimeout(() => { 
-                document.getElementById('loader').classList.add('hidden'); 
-            }, 1500); 
-        });
-        
-        function toggleMenu() { 
-            const menu = document.getElementById('mobileMenu'); 
-            menu.classList.toggle('hidden'); 
-            menu.classList.toggle('flex'); 
-        }
-        
-        const observer = new IntersectionObserver((entries) => { 
-            entries.forEach(entry => { 
-                if (entry.isIntersecting) entry.target.classList.add('active'); 
-            }); 
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        
-        function filterPortfolio(category) {
-            const items = document.querySelectorAll('.portfolio-item');
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            items.forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = 'block';
-                    setTimeout(() => { 
-                        item.style.opacity = '1'; 
-                        item.style.transform = 'scale(1)'; 
-                    }, 10);
-                } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'scale(0.8)';
-                    setTimeout(() => { 
-                        item.style.display = 'none'; 
-                    }, 300);
-                }
+        // Portfolio Data with uploaded images
+        const portfolioData = [
+            {
+                id: 1,
+                category: 'branding',
+                title: 'Al Noor Real Estate',
+                client: 'AL NOOR',
+                type: 'BRANDING',
+                color: 'text-yellow-400',
+                desc: 'Complete brand identity design including logo variations',
+                image: '/mnt/kimi/upload/al-noor.jpg'
+            },
+            {
+                id: 2,
+                category: 'print',
+                title: 'Crispy Delight Menu',
+                client: 'CRISPY DELIGHT',
+                type: 'PRINT DESIGN',
+                color: 'text-orange-400',
+                desc: 'Full restaurant menu design with food photography',
+                image: '/mnt/kimi/upload/menu.jpg'
+            },
+            {
+                id: 3,
+                category: 'branding',
+                title: 'KSK Management',
+                client: 'KSK',
+                type: 'STATIONERY',
+                color: 'text-gray-300',
+                desc: 'Corporate stationery and brand identity package',
+                image: '/mnt/kimi/upload/ksk.jpg'
+            },
+            {
+                id: 4,
+                category: 'print',
+                title: 'Robbery Chocolate',
+                client: 'ROBBERY',
+                type: 'PACKAGING',
+                color: 'text-green-400',
+                desc: 'Product packaging design for coconut chocolate bites',
+                image: '/mnt/kimi/upload/robbery.jpg'
+            },
+            {
+                id: 5,
+                category: 'branding',
+                title: 'FixPro Maintenance',
+                client: 'FIXPRO',
+                type: 'BRANDING',
+                color: 'text-teal-400',
+                desc: 'Complete brand identity for contracting company',
+                image: '/mnt/kimi/upload/fixpro.png'
+            },
+            {
+                id: 6,
+                category: 'branding',
+                title: 'Amul Travel',
+                client: 'AMUL',
+                type: 'STATIONERY',
+                color: 'text-blue-400',
+                desc: 'Travel agency brand identity and stationery design',
+                image: '/mnt/kimi/upload/amul.jpg'
+            },
+            {
+                id: 7,
+                category: 'social',
+                title: 'Eid Mubarak Post',
+                client: 'ZAIN STAR',
+                type: 'SOCIAL MEDIA',
+                color: 'text-blue-400',
+                desc: '3D rendered Eid celebration social media post',
+                image: '/mnt/kimi/upload/eid.jpg'
+            },
+            {
+                id: 8,
+                category: 'social',
+                title: 'Hiring Poster',
+                client: 'ZAIN STAR',
+                type: 'SOCIAL MEDIA',
+                color: 'text-blue-400',
+                desc: 'Professional recruitment poster design',
+                image: '/mnt/kimi/upload/hiring.jpg'
+            },
+            {
+                id: 9,
+                category: 'branding',
+                title: 'JR Advertising',
+                client: 'JR ADVERTISING',
+                type: 'BRANDING',
+                color: 'text-orange-400',
+                desc: 'Complete advertising agency brand identity',
+                image: '/mnt/kimi/upload/jr.jpg'
+            }
+        ];
+
+        // Initialize Portfolio
+        function renderPortfolio(filter = 'all') {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+            
+            const filtered = filter === 'all' ? portfolioData : portfolioData.filter(item => item.category === filter);
+            
+            filtered.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'portfolio-item reveal';
+                div.style.transitionDelay = `${index * 0.1}s`;
+                div.onclick = () => openModal(item);
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag ${item.color}">${item.client} • ${item.type}</span>
+                        <h3 class="portfolio-title text-2xl font-bold">${item.title}</h3>
+                        <p class="portfolio-title text-gray-300 text-sm mt-2" style="transition-delay: 0.3s">${item.desc}</p>
+                    </div>
+                `;
+                grid.appendChild(div);
             });
+            
+            // Re-initialize observer for new elements
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
-        
-        function openModal(element) {
-            const img = element.querySelector('img');
-            const title = element.querySelector('h3').textContent;
-            const desc = element.querySelector('p').textContent;
-            const category = element.querySelector('span').textContent;
-            document.getElementById('modalImage').src = img.src;
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalDesc').textContent = category + ' — ' + desc;
+
+        // Filter Function
+        function filterPortfolio(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderPortfolio(category);
+        }
+
+        // Modal Functions
+        function openModal(item) {
+            document.getElementById('modalImage').src = item.image;
+            document.getElementById('modalTitle').textContent = item.title;
+            document.getElementById('modalDesc').innerHTML = `<span class="${item.color}">${item.client} • ${item.type}</span> — ${item.desc}`;
             document.getElementById('imageModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeModal() {
             document.getElementById('imageModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
+
+        // Mobile Menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
         
-        document.addEventListener('keydown', (e) => { 
-            if (e.key === 'Escape') closeModal(); 
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+            cursorDot.style.left = e.clientX - 2 + 'px';
+            cursorDot.style.top = e.clientY - 2 + 'px';
+        });
+
+        document.querySelectorAll('a, button, .portfolio-item, .magnetic-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Magnetic Buttons
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+            
+            // Navbar background
+            const navbar = document.getElementById('navbar');
+            if (winScroll > 50) {
+                navbar.classList.add('bg-black/80', 'py-4');
+                navbar.classList.remove('py-6', 'bg-black/30');
+            } else {
+                navbar.classList.remove('bg-black/80', 'py-4');
+                navbar.classList.add('py-6', 'bg-black/30');
+            }
+        });
+
+        // Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Animate skill bars
+                    if (entry.target.querySelector('.skill-progress')) {
+                        entry.target.querySelectorAll('.skill-progress').forEach(bar => {
+                            bar.style.width = bar.getAttribute('data-width');
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> MESSAGE SENT!';
+                btn.classList.remove('from-purple-600', 'to-blue-600');
+                btn.classList.add('from-green-600', 'to-green-500');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    btn.classList.add('from-purple-600', 'to-blue-600');
+                    btn.classList.remove('from-green-600', 'to-green-500');
+                    e.target.reset();
+                }, 3000);
+            }, 1500);
+        });
+
+        // Initialize
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2000);
+            
+            renderPortfolio();
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
     </script>
 </body>
 </html>
-
-
-
