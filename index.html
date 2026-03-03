@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Owais Gulzar | Senior Graphic Designer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -16,219 +16,56 @@
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         
         .noise-overlay { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            pointer-events: none; 
-            z-index: 9999; 
-            opacity: 0.03; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); 
         }
         
         .gradient-text { 
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            background-clip: text; 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; 
         }
         
-        .glitch { 
-            position: relative; 
-        }
-        .glitch::before, .glitch::after { 
-            content: attr(data-text); 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-        }
-        .glitch::before { 
-            left: 2px; 
-            text-shadow: -2px 0 #ff00c1; 
-            clip: rect(44px, 450px, 56px, 0); 
-            animation: glitch-anim 5s infinite linear alternate-reverse; 
-        }
-        .glitch::after { 
-            left: -2px; 
-            text-shadow: -2px 0 #00fff9; 
-            clip: rect(44px, 450px, 56px, 0); 
-            animation: glitch-anim2 5s infinite linear alternate-reverse; 
-        }
+        .glitch { position: relative; }
+        .glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .glitch::before { left: 2px; text-shadow: -2px 0 #ff00c1; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim 5s infinite linear alternate-reverse; }
+        .glitch::after  { left: -2px; text-shadow: -2px 0 #00fff9; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim2 5s infinite linear alternate-reverse; }
+        @keyframes glitch-anim { 0% { clip: rect(12px, 9999px, 52px, 0); } 20% { clip: rect(65px, 9999px, 100px, 0); } 40% { clip: rect(26px, 9999px, 6px, 0); } 60% { clip: rect(82px, 9999px, 44px, 0); } 80% { clip: rect(32px, 9999px, 68px, 0); } 100% { clip: rect(96px, 9999px, 16px, 0); } }
+        @keyframes glitch-anim2 { 0% { clip: rect(65px, 9999px, 99px, 0); } 20% { clip: rect(4px, 9999px, 30px, 0); } 40% { clip: rect(88px, 9999px, 12px, 0); } 60% { clip: rect(22px, 9999px, 55px, 0); } 80% { clip: rect(54px, 9999px, 22px, 0); } 100% { clip: rect(12px, 9999px, 85px, 0); } }
         
-        @keyframes glitch-anim { 
-            0% { clip: rect(12px, 9999px, 52px, 0); } 
-            20% { clip: rect(65px, 9999px, 100px, 0); } 
-            40% { clip: rect(26px, 9999px, 6px, 0); } 
-            60% { clip: rect(82px, 9999px, 44px, 0); } 
-            80% { clip: rect(32px, 9999px, 68px, 0); } 
-            100% { clip: rect(96px, 9999px, 16px, 0); } 
-        }
-        @keyframes glitch-anim2 { 
-            0% { clip: rect(65px, 9999px, 99px, 0); } 
-            20% { clip: rect(4px, 9999px, 30px, 0); } 
-            40% { clip: rect(88px, 9999px, 12px, 0); } 
-            60% { clip: rect(22px, 9999px, 55px, 0); } 
-            80% { clip: rect(54px, 9999px, 22px, 0); } 
-            100% { clip: rect(12px, 9999px, 85px, 0); } 
-        }
+        .portfolio-item { position: relative; overflow: hidden; cursor: pointer; border-radius: 1rem; }
+        .portfolio-item img { transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); width: 100%; height: 100%; object-fit: cover; }
+        .portfolio-item:hover img { transform: scale(1.1); }
+        .portfolio-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); opacity: 0; transition: opacity 0.4s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
         
-        .portfolio-item { 
-            position: relative; 
-            overflow: hidden; 
-            cursor: pointer; 
-            border-radius: 1rem; 
-        }
-        .portfolio-item img { 
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-        }
-        .portfolio-item:hover img { 
-            transform: scale(1.1); 
-        }
-        .portfolio-overlay { 
-            position: absolute; 
-            inset: 0; 
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); 
-            opacity: 0; 
-            transition: opacity 0.4s ease; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: flex-end; 
-            padding: 2rem; 
-        }
-        .portfolio-item:hover .portfolio-overlay { 
-            opacity: 1; 
-        }
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
-        .marquee-container { 
-            overflow: hidden; 
-            white-space: nowrap; 
-        }
-        .marquee-content { 
-            display: inline-block; 
-            animation: marquee 20s linear infinite; 
-        }
-        @keyframes marquee { 
-            0% { transform: translateX(0); } 
-            100% { transform: translateX(-50%); } 
-        }
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+        .modal.active { display: flex; opacity: 1; }
+        .modal-content { max-width: 90vw; max-height: 90vh; position: relative; }
+        .modal-close { position: absolute; top: -40px; right: 0; color: #fff; font-size: 2rem; cursor: pointer; transition: transform 0.3s ease; }
+        .modal-close:hover { transform: rotate(90deg); }
         
-        .modal { 
-            position: fixed; 
-            inset: 0; 
-            background: rgba(0,0,0,0.95); 
-            z-index: 1000; 
-            display: none; 
-            align-items: center; 
-            justify-content: center; 
-            opacity: 0; 
-            transition: opacity 0.3s ease; 
-        }
-        .modal.active { 
-            display: flex; 
-            opacity: 1; 
-        }
-        .modal-content { 
-            max-width: 90vw; 
-            max-height: 90vh; 
-            position: relative; 
-        }
-        .modal-close { 
-            position: absolute; 
-            top: -40px; 
-            right: 0; 
-            color: #fff; 
-            font-size: 2rem; 
-            cursor: pointer; 
-            transition: transform 0.3s ease; 
-        }
-        .modal-close:hover { 
-            transform: rotate(90deg); 
-        }
+        .loader { position: fixed; inset: 0; background: #0a0a0a; z-index: 10000; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease, visibility 0.5s ease; }
+        .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         
-        .loader { 
-            position: fixed; 
-            inset: 0; 
-            background: #0a0a0a; 
-            z-index: 10000; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            transition: opacity 0.5s ease, visibility 0.5s ease; 
-        }
-        .loader.hidden { 
-            opacity: 0; 
-            visibility: hidden; 
-        }
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
         
-        .reveal { 
-            opacity: 0; 
-            transform: translateY(50px); 
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); 
-        }
-        .reveal.active { 
-            opacity: 1; 
-            transform: translateY(0); 
-        }
+        .filter-btn { padding: 0.5rem 1.5rem; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: #fff; cursor: pointer; transition: all 0.3s ease; }
+        .filter-btn.active, .filter-btn:hover { background: #667eea; border-color: #667eea; }
         
-        .filter-btn { 
-            padding: 0.5rem 1.5rem; 
-            border-radius: 9999px; 
-            border: 1px solid rgba(255,255,255,0.2); 
-            background: transparent; 
-            color: #fff; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-        }
-        .filter-btn.active, .filter-btn:hover { 
-            background: #667eea; 
-            border-color: #667eea; 
-        }
+        .profile-image { position: relative; overflow: hidden; border-radius: 2rem; box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.25); }
+        .profile-image::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%); z-index: 1; opacity: 0; transition: opacity 0.3s ease; }
+        .profile-image:hover::before { opacity: 1; }
         
-        .profile-image {
-            position: relative;
-            overflow: hidden;
-            border-radius: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.25);
-        }
-        .profile-image::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .profile-image:hover::before {
-            opacity: 1;
-        }
+        .skill-bar { background: rgba(255,255,255,0.1); height: 8px; border-radius: 4px; overflow: hidden; }
+        .skill-progress { height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 4px; transition: width 1s ease; }
         
-        .skill-bar { 
-            background: rgba(255,255,255,0.1); 
-            height: 8px; 
-            border-radius: 4px; 
-            overflow: hidden; 
-        }
-        .skill-progress { 
-            height: 100%; 
-            background: linear-gradient(90deg, #667eea, #764ba2); 
-            border-radius: 4px; 
-            transition: width 1s ease; 
-        }
-        
-        .client-logo { 
-            filter: grayscale(100%) opacity(0.6); 
-            transition: all 0.3s ease; 
-        }
-        .client-logo:hover { 
-            filter: grayscale(0%) opacity(1); 
-        }
+        .client-logo { filter: grayscale(100%) opacity(0.6); transition: all 0.3s ease; }
+        .client-logo:hover { filter: grayscale(0%) opacity(1); }
     </style>
 </head>
 <body>
@@ -244,7 +81,7 @@
                 <a href="#services" class="hover:text-purple-400 transition-colors">SERVICES</a>
                 <a href="#contact" class="hover:text-purple-400 transition-colors">CONTACT</a>
             </div>
-            <button class="md:hidden text-white" onclick="toggleMenu()">
+            <button class="md:hidden text-white" id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileMenu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
@@ -253,10 +90,10 @@
     </nav>
 
     <div id="mobileMenu" class="fixed inset-0 bg-black z-40 hidden flex-col items-center justify-center gap-8 text-2xl font-bold">
-        <a href="#work" onclick="toggleMenu()" class="hover:text-purple-400 transition-colors">WORK</a>
-        <a href="#about" onclick="toggleMenu()" class="hover:text-purple-400 transition-colors">ABOUT</a>
-        <a href="#services" onclick="toggleMenu()" class="hover:text-purple-400 transition-colors">SERVICES</a>
-        <a href="#contact" onclick="toggleMenu()" class="hover:text-purple-400 transition-colors">CONTACT</a>
+        <a href="#work" class="hover:text-purple-400 transition-colors">WORK</a>
+        <a href="#about" class="hover:text-purple-400 transition-colors">ABOUT</a>
+        <a href="#services" class="hover:text-purple-400 transition-colors">SERVICES</a>
+        <a href="#contact" class="hover:text-purple-400 transition-colors">CONTACT</a>
     </div>
 
     <!-- Hero Section with Profile -->
@@ -325,6 +162,8 @@
     <div class="py-8 border-y border-white/10 bg-white/5 backdrop-blur-sm">
         <div class="marquee-container">
             <div class="marquee-content text-4xl font-bold text-white/20" style="font-family: 'Space Grotesk', sans-serif;">
+                <!-- duplicated text for seamless marquee -->
+                ZAIN STAR • AL HAYAT PRINTING • BRANDING • SOCIAL MEDIA • PRINT DESIGN • ILLUSTRATOR • PHOTOSHOP • 4 YEARS EXPERIENCE • 
                 ZAIN STAR • AL HAYAT PRINTING • BRANDING • SOCIAL MEDIA • PRINT DESIGN • ILLUSTRATOR • PHOTOSHOP • 4 YEARS EXPERIENCE •
             </div>
         </div>
@@ -357,17 +196,17 @@
                     <h2 class="text-5xl md:text-6xl font-bold mb-4" style="font-family: 'Space Grotesk', sans-serif;">SELECTED<br>WORKS</h2>
                     <p class="text-gray-400">Click any image to view in full size</p>
                 </div>
-                <div class="flex flex-wrap gap-2 mt-6 md:mt-0">
-                    <button class="filter-btn active" onclick="filterPortfolio(event, 'all')">All</button>
-                    <button class="filter-btn" onclick="filterPortfolio('social')">Social Media</button>
-                    <button class="filter-btn" onclick="filterPortfolio('print')">Print</button>
-                    <button class="filter-btn" onclick="filterPortfolio('branding')">Branding</button>
+                <div class="flex flex-wrap gap-2 mt-6 md:mt-0" id="filterButtons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="social">Social Media</button>
+                    <button class="filter-btn" data-filter="print">Print</button>
+                    <button class="filter-btn" data-filter="branding">Branding</button>
                 </div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
                 <!-- Portfolio items with placeholder images -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
+                <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" data-title="Corporate Branding" data-desc="Visual Identity Design" data-meta="ZAIN STAR • BRANDING">
                     <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" alt="Branding Project" class="w-full h-full object-cover">
                     <div class="portfolio-overlay">
                         <span class="text-blue-400 text-sm font-medium mb-2">ZAIN STAR • BRANDING</span>
@@ -376,7 +215,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)" style="transition-delay: 0.1s;">
+                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" data-title="Eid Campaign" data-desc="Festive Marketing Design" data-meta="ZAIN STAR • SOCIAL MEDIA" style="transition-delay: 0.1s;">
                     <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80" alt="Social Media" class="w-full h-full object-cover">
                     <div class="portfolio-overlay">
                         <span class="text-green-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
@@ -385,7 +224,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="print" onclick="openModal(this)" style="transition-delay: 0.2s;">
+                <div class="portfolio-item aspect-[4/5] reveal group" data-category="print" data-title="Business Cards" data-desc="Premium Print Design" data-meta="AL HAYAT • PRINT" style="transition-delay: 0.2s;">
                     <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80" alt="Print Design" class="w-full h-full object-cover">
                     <div class="portfolio-overlay">
                         <span class="text-orange-400 text-sm font-medium mb-2">AL HAYAT • PRINT</span>
@@ -394,7 +233,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)">
+                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" data-title="Ramadan Campaign" data-desc="Islamic Calligraphy Design" data-meta="ZAIN STAR • SOCIAL MEDIA">
                     <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80" alt="Digital Campaign" class="w-full h-full object-cover">
                     <div class="portfolio-overlay">
                         <span class="text-blue-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
@@ -403,7 +242,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)" style="transition-delay: 0.1s;">
+                <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" data-title="Logo Design" data-desc="Brand Identity System" data-meta="ZAIN STAR • BRANDING" style="transition-delay: 0.1s;">
                     <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80" alt="Logo Design" class="w-full h-full object-cover">
                     <div class="portfolio-overlay">
                         <span class="text-teal-400 text-sm font-medium mb-2">ZAIN STAR • BRANDING</span>
@@ -412,7 +251,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="print" onclick="openModal(this)" style="transition-delay: 0.2s;">
+                <div class="portfolio-item aspect-[4/5] reveal group" data-category="print" data-title="Marketing Brochure" data-desc="Corporate Print Media" data-meta="AL HAYAT • PRINT" style="transition-delay: 0.2s;">
                     <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&q=80" alt="Brochure" class="w-full h-full object-cover">
                     <div class="portfolio-overlay">
                         <span class="text-purple-400 text-sm font-medium mb-2">AL HAYAT • PRINT</span>
@@ -731,9 +570,9 @@
     </section>
 
     <!-- Image Modal -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
+    <div id="imageModal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
             <img id="modalImage" src="" alt="Full size" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl">
             <div class="mt-4 text-center">
                 <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
@@ -743,74 +582,100 @@
     </div>
 
     <script>
+        // Loader hide
         window.addEventListener('load', () => { 
             setTimeout(() => { 
-                document.getElementById('loader').classList.add('hidden'); 
-            }, 1500); 
+                const ld = document.getElementById('loader');
+                if(ld) ld.classList.add('hidden'); 
+            }, 600); 
         });
-        
-        function toggleMenu() { 
-            const menu = document.getElementById('mobileMenu'); 
-            menu.classList.toggle('hidden'); 
-            menu.classList.toggle('flex'); 
-        }
-        
-        const observer = new IntersectionObserver((entries) => { 
-            entries.forEach(entry => { 
-                if (entry.isIntersecting) entry.target.classList.add('active'); 
-            }); 
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        
-       document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-});
-        
-       function filterPortfolio(event, category) {
-            const items = document.querySelectorAll('.portfolio-item');
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            items.forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = '';
-                    setTimeout(() => { 
-                        item.style.opacity = '1'; 
-                        item.style.transform = 'scale(1)'; 
-                    }, 10);
-                } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'scale(0.8)';
-                    setTimeout(() => { 
-                        item.style.display = 'none'; 
-                    }, 300);
-                }
+
+        // Mobile menu toggle (with body lock)
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileBtn && mobileBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex', !isHidden);
+            document.body.classList.toggle('overflow-hidden', !isHidden);
+            mobileBtn.setAttribute('aria-expanded', String(!isHidden));
+        });
+
+        // IntersectionObserver for reveal (initialize on DOMContentLoaded)
+        let revealObserver;
+        document.addEventListener("DOMContentLoaded", () => {
+            revealObserver = new IntersectionObserver((entries) => { 
+                entries.forEach(entry => { 
+                    if (entry.isIntersecting) entry.target.classList.add('active'); 
+                }); 
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+            // Filtering: attach event listeners to filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const category = this.dataset.filter;
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    document.querySelectorAll('.portfolio-item').forEach(item => {
+                        if (category === 'all' || item.dataset.category === category) {
+                            item.style.display = '';
+                            // animate in
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            // animate out
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => { item.style.display = 'none'; }, 300);
+                        }
+                    });
+                });
             });
-        }
-        
-        function openModal(element) {
-            const img = element.querySelector('img');
-            const title = element.querySelector('h3').textContent;
-            const desc = element.querySelector('p').textContent;
-            const category = element.querySelector('span').textContent;
-            document.getElementById('modalImage').src = img.src;
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalDesc').textContent = category + ' — ' + desc;
-            document.getElementById('imageModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
+
+            // Modal: attach click handlers to portfolio items
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                item.addEventListener('click', function () {
+                    const imgEl = this.querySelector('img');
+                    const title = this.dataset.title || (this.querySelector('h3') ? this.querySelector('h3').textContent : '');
+                    const desc  = this.dataset.desc  || (this.querySelector('p')  ? this.querySelector('p').textContent  : '');
+                    const meta  = this.dataset.meta  || (this.querySelector('span')? this.querySelector('span').textContent : '');
+                    const modal = document.getElementById('imageModal');
+                    if (imgEl && modal) {
+                        document.getElementById('modalImage').src = imgEl.src;
+                        document.getElementById('modalTitle').textContent = title;
+                        document.getElementById('modalDesc').textContent = meta + (desc ? ' — ' + desc : '');
+                        modal.classList.add('active');
+                        modal.setAttribute('aria-hidden', 'false');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            // Modal close handlers
+            const modal = document.getElementById('imageModal');
+            const modalClose = document.getElementById('modalClose');
+            modalClose && modalClose.addEventListener('click', closeModal);
+            modal && modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+        }); // end DOMContentLoaded
+
         function closeModal() {
-            document.getElementById('imageModal').classList.remove('active');
+            const modal = document.getElementById('imageModal');
+            if (!modal) return;
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = 'auto';
+            // remove src to stop audio/video if any in future
+            const img = document.getElementById('modalImage');
+            if (img) img.src = '';
         }
-        
-        document.addEventListener('keydown', (e) => { 
-            if (e.key === 'Escape') closeModal(); 
-        });
     </script>
 </body>
 </html>
-
-
-
-
