@@ -770,7 +770,7 @@
             event.target.classList.add('active');
             items.forEach(item => {
                 if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = 'block';
+                    item.style.display = '';
                     setTimeout(() => { 
                         item.style.opacity = '1'; 
                         item.style.transform = 'scale(1)'; 
@@ -808,5 +808,6 @@
     </script>
 </body>
 </html>
+
 
 
