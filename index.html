@@ -347,58 +347,110 @@
                 </div>
             </div>
         </div>
-    </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
+    <!-- Al Noor Logo - Branding -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
+        <img src="al noor logo-02.jpg" alt="Al Noor Real Estate Logo" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-teal-400 text-sm font-medium mb-2">AL NOOR • BRANDING</span>
+            <h3 class="text-2xl font-bold">Real Estate Logo</h3>
+            <p class="text-gray-300 text-sm mt-2">Complete brand identity with multiple color variations</p>
+        </div>
+    </div>
 
-    <!-- Portfolio Section -->
-    <section id="work" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 reveal">
-                <div>
-                    <h2 class="text-5xl md:text-6xl font-bold mb-4" style="font-family: 'Space Grotesk', sans-serif;">SELECTED<br>WORKS</h2>
-                    <p class="text-gray-400">Click any image to view in full size</p>
-                </div>
-                <div class="flex flex-wrap gap-2 mt-6 md:mt-0">
-                    <button class="filter-btn active" onclick="filterPortfolio('all')">All</button>
-                    <button class="filter-btn" onclick="filterPortfolio('social')">Social Media</button>
-                    <button class="filter-btn" onclick="filterPortfolio('print')">Print</button>
-                    <button class="filter-btn" onclick="filterPortfolio('branding')">Branding</button>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
-                <!-- Portfolio items with placeholder images -->
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
-                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80" alt="Branding Project" class="w-full h-full object-cover">
-                    <div class="portfolio-overlay">
-                        <span class="text-blue-400 text-sm font-medium mb-2">ZAIN STAR • BRANDING</span>
-                        <h3 class="text-2xl font-bold">Corporate Branding</h3>
-                        <p class="text-gray-300 text-sm mt-2">Visual Identity Design</p>
-                    </div>
-                </div>
+    <!-- Crispy Delight Menu - Print -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="print" onclick="openModal(this)" style="transition-delay: 0.1s;">
+        <img src="crispy delight cafeteria - A4menu final.jpg" alt="Crispy Delight Menu" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-orange-400 text-sm font-medium mb-2">CRISPY DELIGHT • PRINT</span>
+            <h3 class="text-2xl font-bold">Restaurant Menu Design</h3>
+            <p class="text-gray-300 text-sm mt-2">Full A4 menu with food photography and layout</p>
+        </div>
+    </div>
 
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)" style="transition-delay: 0.1s;">
-                    <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80" alt="Social Media" class="w-full h-full object-cover">
-                    <div class="portfolio-overlay">
-                        <span class="text-green-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
-                        <h3 class="text-2xl font-bold">Eid Campaign</h3>
-                        <p class="text-gray-300 text-sm mt-2">Festive Marketing Design</p>
-                    </div>
-                </div>
+    <!-- KSK Stationery - Branding -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)" style="transition-delay: 0.2s;">
+        <img src="Businesscard Business card Business cards or letterhead.jpg" alt="KSK Stationery" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-gray-400 text-sm font-medium mb-2">KSK MANAGEMENT • BRANDING</span>
+            <h3 class="text-2xl font-bold">Corporate Stationery</h3>
+            <p class="text-gray-300 text-sm mt-2">Complete stationery set with letterhead, business cards & mockups</p>
+        </div>
+    </div>
 
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="print" onclick="openModal(this)" style="transition-delay: 0.2s;">
-                    <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80" alt="Print Design" class="w-full h-full object-cover">
-                    <div class="portfolio-overlay">
-                        <span class="text-orange-400 text-sm font-medium mb-2">AL HAYAT • PRINT</span>
-                        <h3 class="text-2xl font-bold">Business Cards</h3>
-                        <p class="text-gray-300 text-sm mt-2">Premium Print Design</p>
-                    </div>
-                </div>
+    <!-- Robbery Chocolate - Branding -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
+        <img src="robbery-da1.png.jpg" alt="Robbery Chocolate Packaging" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-green-400 text-sm font-medium mb-2">ROBBERY • PACKAGING</span>
+            <h3 class="text-2xl font-bold">Chocolate Packaging</h3>
+            <p class="text-gray-300 text-sm mt-2">Product packaging design with bold typography</p>
+        </div>
+    </div>
 
-                <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)">
-                    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80" alt="Digital Campaign" class="w-full h-full object-cover">
-                    <div class="portfolio-overlay">
-                        <span class="text-blue-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
-                        <h3 class="text-2xl font-bold">Ramadan Campaign</h3>
+    <!-- FixPro Stationery - Branding -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)" style="transition-delay: 0.1s;">
+        <img src="Businesscard Business card Business cards or letterhead.png" alt="FixPro Stationery" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-blue-400 text-sm font-medium mb-2">FIXPRO • BRANDING</span>
+            <h3 class="text-2xl font-bold">Facility Management Brand</h3>
+            <p class="text-gray-300 text-sm mt-2">Professional stationery suite for contracting company</p>
+        </div>
+    </div>
+
+    <!-- Amul Stationery - Branding -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)" style="transition-delay: 0.2s;">
+        <img src="AMUL STATIONERY.jpg" alt="Amul Stationery" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-blue-400 text-sm font-medium mb-2">AMUL • BRANDING</span>
+            <h3 class="text-2xl font-bold">Travel Agency Identity</h3>
+            <p class="text-gray-300 text-sm mt-2">Corporate stationery design with blue theme</p>
+        </div>
+    </div>
+
+    <!-- Zain Star Eid Post - Social Media -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)">
+        <img src="post eid-02.jpg" alt="Zain Star Eid Post" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-yellow-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
+            <h3 class="text-2xl font-bold">Eid Mubarak Campaign</h3>
+            <p class="text-gray-300 text-sm mt-2">Festive social media post with 3D elements</p>
+        </div>
+    </div>
+
+    <!-- Eid Poster Goat - Social Media -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)" style="transition-delay: 0.1s;">
+        <img src="EID POSTER.png" alt="Eid Poster" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-blue-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
+            <h3 class="text-2xl font-bold">Eid Al-Adha Creative</h3>
+            <p class="text-gray-300 text-sm mt-2">Creative Eid poster with custom illustration</p>
+        </div>
+    </div>
+
+    <!-- Hiring Poster - Social Media -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)" style="transition-delay: 0.2s;">
+        <img src="Zain - Hiring Poster - Female Accountant.jpg" alt="Hiring Poster" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-purple-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL MEDIA</span>
+            <h3 class="text-2xl font-bold">Job Hiring Poster</h3>
+            <p class="text-gray-300 text-sm mt-2">Professional recruitment poster design</p>
+        </div>
+    </div>
+
+    <!-- JR Advertising - Branding -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
+        <img src="jr. advertising agency final-03.jpg" alt="JR Advertising Branding" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-orange-400 text-sm font-medium mb-2">JR ADVERTISING • BRANDING</span>
+            <h3 class="text-2xl font-bold">Agency Brand Identity</h3>
+            <p class="text-gray-300 text-sm mt-2">Complete branding with logo, mockups & applications</p>
+        </div>
+    </div>
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
+    <h4 class="text-4xl font-bold text-purple-400 mb-2">100+</h4>
+    <p class="text-gray-400 text-sm">Projects Completed</p>
+</div>                        <h3 class="text-2xl font-bold">Ramadan Campaign</h3>
                         <p class="text-gray-300 text-sm mt-2">Islamic Calligraphy Design</p>
                     </div>
                 </div>
@@ -808,3 +860,4 @@
     </script>
 </body>
 </html>
+
