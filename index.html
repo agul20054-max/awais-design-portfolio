@@ -1,93 +1,214 @@
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owais Gulzar | Senior Graphic Designer</title>
 
-    <!-- Al Noor -->
-    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
-        <img src="al-noor.jpg" alt="Al Noor Logo" class="w-full h-full object-cover">
-        <div class="portfolio-overlay">
-            <span class="text-teal-400 text-sm font-medium mb-2">AL NOOR • BRANDING</span>
-            <h3 class="text-2xl font-bold">Real Estate Logo</h3>
-            <p class="text-gray-300 text-sm mt-2">Complete brand identity design</p>
-        </div>
-    </div>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Crispy Menu -->
-    <div class="portfolio-item aspect-[4/5] reveal group" data-category="print" onclick="openModal(this)">
-        <img src="menu.jpg" alt="Restaurant Menu" class="w-full h-full object-cover">
-        <div class="portfolio-overlay">
-            <span class="text-orange-400 text-sm font-medium mb-2">CRISPY DELIGHT • PRINT</span>
-            <h3 class="text-2xl font-bold">Restaurant Menu</h3>
-            <p class="text-gray-300 text-sm mt-2">A4 Menu Layout Design</p>
-        </div>
-    </div>
+<style>
+body{
+    font-family:'Space Grotesk',sans-serif;
+    background:#0b0b0f;
+    color:white;
+    scroll-behavior:smooth;
+}
+.gradient-text{
+    background:linear-gradient(90deg,#8b5cf6,#3b82f6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.glow{
+    box-shadow:0 0 60px rgba(139,92,246,0.4);
+}
+.portfolio-item{
+    overflow:hidden;
+    border-radius:20px;
+    cursor:pointer;
+}
+.portfolio-item img{
+    transition:0.6s ease;
+}
+.portfolio-item:hover img{
+    transform:scale(1.1);
+}
+.overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,rgba(0,0,0,0.9),transparent);
+    opacity:0;
+    transition:0.4s;
+}
+.portfolio-item:hover .overlay{
+    opacity:1;
+}
+.fade-up{
+    opacity:0;
+    transform:translateY(40px);
+    transition:0.8s ease;
+}
+.fade-up.show{
+    opacity:1;
+    transform:translateY(0);
+}
+</style>
+</head>
 
-    <!-- KSK -->
-    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
-        <img src="ksk.jpg" alt="KSK Branding" class="w-full h-full object-cover">
-        <div class="portfolio-overlay">
-            <span class="text-gray-400 text-sm font-medium mb-2">KSK • BRANDING</span>
-            <h3 class="text-2xl font-bold">Corporate Stationery</h3>
-            <p class="text-gray-300 text-sm mt-2">Business cards & letterhead</p>
-        </div>
-    </div>
+<body>
 
-    <!-- Robbery -->
-    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
-        <img src="robbery.jpg" alt="Robbery Packaging" class="w-full h-full object-cover">
-        <div class="portfolio-overlay">
-            <span class="text-green-400 text-sm font-medium mb-2">ROBBERY • PACKAGING</span>
-            <h3 class="text-2xl font-bold">Chocolate Packaging</h3>
-            <p class="text-gray-300 text-sm mt-2">Bold product branding</p>
-        </div>
-    </div>
+<!-- HERO -->
+<section class="min-h-screen flex items-center justify-center px-6">
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
-    <!-- FixPro -->
-    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
-        <img src="fixpro.jpeg" alt="FixPro Branding" class="w-full h-full object-cover">
-        <div class="portfolio-overlay">
-            <span class="text-blue-400 text-sm font-medium mb-2">FIXPRO • BRANDING</span>
-            <h3 class="text-2xl font-bold">Facility Management Brand</h3>
-            <p class="text-gray-300 text-sm mt-2">Professional stationery suite</p>
-        </div>
-    </div>
+<div class="fade-up">
+<p class="text-purple-400 tracking-widest mb-4">SENIOR GRAPHIC DESIGNER</p>
+<h1 class="text-6xl font-bold leading-none mb-6">
+OWAIS<br><span class="gradient-text">GULZAR</span>
+</h1>
+<p class="text-gray-400 mb-8">
+Creative and detail-oriented designer with 4+ years of experience in branding,
+print and digital media. Delivering premium visual identity solutions in UAE.
+</p>
 
-    <!-- Amul -->
-    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
-        <img src="amul.jpg" alt="Amul Branding" class="w-full h-full object-cover">
-        <div class="portfolio-overlay">
-            <span class="text-blue-400 text-sm font-medium mb-2">AMUL • BRANDING</span>
-            <h3 class="text-2xl font-bold">Travel Agency Identity</h3>
-            <p class="text-gray-300 text-sm mt-2">Corporate stationery design</p>
-        </div>
-    </div>
+<a href="#work" class="px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-purple-500 hover:text-white transition">
+View Work
+</a>
+</div>
 
-    <!-- Eid -->
-    <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)">
-        <img src="eid.jpg" alt="Eid Campaign" class="w-full h-full object-cover">
-        <div class="portfolio-overlay">
-            <span class="text-yellow-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL</span>
-            <h3 class="text-2xl font-bold">Eid Campaign</h3>
-            <p class="text-gray-300 text-sm mt-2">Festive Social Media Creative</p>
-        </div>
-    </div>
-
-    <!-- Hiring -->
-    <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)">
-        <img src="hiring.jpg" alt="Hiring Poster" class="w-full h-full object-cover">
-        <div class="portfolio-overlay">
-            <span class="text-purple-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL</span>
-            <h3 class="text-2xl font-bold">Job Hiring Poster</h3>
-            <p class="text-gray-300 text-sm mt-2">Recruitment Design</p>
-        </div>
-    </div>
-
-    <!-- JR -->
-    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
-        <img src="jr.jpg" alt="JR Advertising" class="w-full h-full object-cover">
-        <div class="portfolio-overlay">
-            <span class="text-orange-400 text-sm font-medium mb-2">JR ADVERTISING • BRANDING</span>
-            <h3 class="text-2xl font-bold">Agency Identity</h3>
-            <p class="text-gray-300 text-sm mt-2">Full brand system</p>
-        </div>
-    </div>
+<div class="fade-up flex justify-center">
+<div class="relative glow rounded-3xl overflow-hidden w-80 h-96">
+<img src="images/profile.jpg" class="w-full h-full object-cover">
+</div>
+</div>
 
 </div>
+</section>
+
+
+<!-- PORTFOLIO -->
+<section id="work" class="py-24 px-6">
+<div class="max-w-7xl mx-auto">
+
+<h2 class="text-5xl font-bold mb-16 text-center fade-up">
+Selected <span class="gradient-text">Works</span>
+</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<!-- AL NOOR -->
+<div class="portfolio-item relative fade-up">
+<img src="images/al-noor.jpg" class="w-full h-96 object-cover">
+<div class="overlay flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold">Al Noor Real Estate</h3>
+<p class="text-gray-400 text-sm">Brand Identity Design</p>
+</div>
+</div>
+
+<!-- MENU -->
+<div class="portfolio-item relative fade-up">
+<img src="images/menu.jpg" class="w-full h-96 object-cover">
+<div class="overlay flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold">Restaurant Menu</h3>
+<p class="text-gray-400 text-sm">Print Layout Design</p>
+</div>
+</div>
+
+<!-- KSK -->
+<div class="portfolio-item relative fade-up">
+<img src="images/ksk.jpg" class="w-full h-96 object-cover">
+<div class="overlay flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold">KSK Stationery</h3>
+<p class="text-gray-400 text-sm">Corporate Branding</p>
+</div>
+</div>
+
+<!-- ROBBERY -->
+<div class="portfolio-item relative fade-up">
+<img src="images/robbery.jpg" class="w-full h-96 object-cover">
+<div class="overlay flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold">Robbery Packaging</h3>
+<p class="text-gray-400 text-sm">Product Branding</p>
+</div>
+</div>
+
+<!-- FIXPRO -->
+<div class="portfolio-item relative fade-up">
+<img src="images/fixpro.jpeg" class="w-full h-96 object-cover">
+<div class="overlay flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold">FixPro Identity</h3>
+<p class="text-gray-400 text-sm">Facility Management Branding</p>
+</div>
+</div>
+
+<!-- AMUL -->
+<div class="portfolio-item relative fade-up">
+<img src="images/amul.jpg" class="w-full h-96 object-cover">
+<div class="overlay flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold">Amul Travel</h3>
+<p class="text-gray-400 text-sm">Brand Identity</p>
+</div>
+</div>
+
+<!-- EID -->
+<div class="portfolio-item relative fade-up">
+<img src="images/eid.jpg" class="w-full h-96 object-cover">
+<div class="overlay flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold">Eid Campaign</h3>
+<p class="text-gray-400 text-sm">Social Media Design</p>
+</div>
+</div>
+
+<!-- HIRING -->
+<div class="portfolio-item relative fade-up">
+<img src="images/hiring.jpg" class="w-full h-96 object-cover">
+<div class="overlay flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold">Hiring Poster</h3>
+<p class="text-gray-400 text-sm">Recruitment Campaign</p>
+</div>
+</div>
+
+<!-- JR -->
+<div class="portfolio-item relative fade-up">
+<img src="images/jr.jpg" class="w-full h-96 object-cover">
+<div class="overlay flex flex-col justify-end p-6">
+<h3 class="text-xl font-bold">JR Advertising</h3>
+<p class="text-gray-400 text-sm">Full Brand System</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="py-24 text-center">
+<h2 class="text-4xl font-bold mb-6 fade-up">
+Let's Work <span class="gradient-text">Together</span>
+</h2>
+<p class="text-gray-400 mb-6 fade-up">
+Available for freelance & full-time projects.
+</p>
+<a href="mailto:agul200532@gmail.com" class="px-10 py-4 bg-purple-600 rounded-full font-semibold hover:bg-blue-600 transition">
+Contact Me
+</a>
+</section>
+
+
+<script>
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+document.querySelectorAll(".fade-up").forEach(el=>{
+observer.observe(el);
+});
+</script>
+
+</body>
+</html>
