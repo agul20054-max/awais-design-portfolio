@@ -13,17 +13,53 @@ body{
     font-family:'Space Grotesk',sans-serif;
     background:#0b0b0f;
     color:white;
-    scroll-behavior:smooth;
+    overflow-x:hidden;
+    cursor:none;
 }
-.gradient-text{
-    background:linear-gradient(90deg,#8b5cf6,#3b82f6);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+
+/* Loader */
+#loader{
+    position:fixed;
+    inset:0;
+    background:#0b0b0f;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    transition:1s;
 }
-.glow{
-    box-shadow:0 0 60px rgba(139,92,246,0.4);
+.loader-text{
+    font-size:2rem;
+    letter-spacing:4px;
+    animation:pulse 1.5s infinite;
 }
+@keyframes pulse{
+    0%{opacity:0.3}
+    50%{opacity:1}
+    100%{opacity:0.3}
+}
+
+/* Custom Cursor */
+.cursor{
+    width:20px;
+    height:20px;
+    border:2px solid #8b5cf6;
+    border-radius:50%;
+    position:fixed;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    transition:0.1s ease;
+    z-index:99999;
+}
+.cursor.active{
+    transform:translate(-50%,-50%) scale(2);
+    background:#8b5cf6;
+    opacity:0.3;
+}
+
+/* Portfolio */
 .portfolio-item{
+    position:relative;
     overflow:hidden;
     border-radius:20px;
     cursor:pointer;
@@ -44,19 +80,57 @@ body{
 .portfolio-item:hover .overlay{
     opacity:1;
 }
+
+/* Lightbox */
+#lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9998;
+    opacity:0;
+    visibility:hidden;
+    transition:0.4s;
+}
+#lightbox.active{
+    opacity:1;
+    visibility:visible;
+}
+#lightbox img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:20px;
+}
+
+/* Scroll animation */
 .fade-up{
     opacity:0;
-    transform:translateY(40px);
-    transition:0.8s ease;
+    transform:translateY(50px);
+    transition:1s ease;
 }
 .fade-up.show{
     opacity:1;
     transform:translateY(0);
 }
+.gradient-text{
+    background:linear-gradient(90deg,#8b5cf6,#3b82f6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
 </style>
 </head>
 
 <body>
+
+<!-- Loader -->
+<div id="loader">
+<div class="loader-text gradient-text">OWAIS GULZAR</div>
+</div>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
 
 <!-- HERO -->
 <section class="min-h-screen flex items-center justify-center px-6">
@@ -64,117 +138,69 @@ body{
 
 <div class="fade-up">
 <p class="text-purple-400 tracking-widest mb-4">SENIOR GRAPHIC DESIGNER</p>
-<h1 class="text-6xl font-bold leading-none mb-6">
+<h1 class="text-6xl font-bold mb-6">
 OWAIS<br><span class="gradient-text">GULZAR</span>
 </h1>
 <p class="text-gray-400 mb-8">
-Creative and detail-oriented designer with 4+ years of experience in branding,
-print and digital media. Delivering premium visual identity solutions in UAE.
+Luxury branding & high-end visual design solutions for modern businesses.
 </p>
-
-<a href="#work" class="px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-purple-500 hover:text-white transition">
-View Work
-</a>
 </div>
 
 <div class="fade-up flex justify-center">
-<div class="relative glow rounded-3xl overflow-hidden w-80 h-96">
-<img src="images/profile.jpg" class="w-full h-full object-cover">
-</div>
+<img src="images/profile.jpg" class="w-80 h-96 object-cover rounded-3xl shadow-2xl">
 </div>
 
 </div>
 </section>
 
-
 <!-- PORTFOLIO -->
-<section id="work" class="py-24 px-6">
+<section class="py-24 px-6">
 <div class="max-w-7xl mx-auto">
-
 <h2 class="text-5xl font-bold mb-16 text-center fade-up">
 Selected <span class="gradient-text">Works</span>
 </h2>
 
 <div class="grid md:grid-cols-3 gap-8">
 
-<!-- AL NOOR -->
-<div class="portfolio-item relative fade-up">
-<img src="images/al-noor.jpg" class="w-full h-96 object-cover">
-<div class="overlay flex flex-col justify-end p-6">
-<h3 class="text-xl font-bold">Al Noor Real Estate</h3>
-<p class="text-gray-400 text-sm">Brand Identity Design</p>
+<div class="portfolio-item fade-up" onclick="openLightbox(this)">
+<img src="images/al-noor.jpg">
+<div class="overlay flex items-end p-6">
+<h3 class="font-bold">Al Noor Branding</h3>
 </div>
 </div>
 
-<!-- MENU -->
-<div class="portfolio-item relative fade-up">
-<img src="images/menu.jpg" class="w-full h-96 object-cover">
-<div class="overlay flex flex-col justify-end p-6">
-<h3 class="text-xl font-bold">Restaurant Menu</h3>
-<p class="text-gray-400 text-sm">Print Layout Design</p>
+<div class="portfolio-item fade-up" onclick="openLightbox(this)">
+<img src="images/menu.jpg">
+<div class="overlay flex items-end p-6">
+<h3 class="font-bold">Restaurant Menu</h3>
 </div>
 </div>
 
-<!-- KSK -->
-<div class="portfolio-item relative fade-up">
-<img src="images/ksk.jpg" class="w-full h-96 object-cover">
-<div class="overlay flex flex-col justify-end p-6">
-<h3 class="text-xl font-bold">KSK Stationery</h3>
-<p class="text-gray-400 text-sm">Corporate Branding</p>
+<div class="portfolio-item fade-up" onclick="openLightbox(this)">
+<img src="images/ksk.jpg">
+<div class="overlay flex items-end p-6">
+<h3 class="font-bold">KSK Identity</h3>
 </div>
 </div>
 
-<!-- ROBBERY -->
-<div class="portfolio-item relative fade-up">
-<img src="images/robbery.jpg" class="w-full h-96 object-cover">
-<div class="overlay flex flex-col justify-end p-6">
-<h3 class="text-xl font-bold">Robbery Packaging</h3>
-<p class="text-gray-400 text-sm">Product Branding</p>
+<div class="portfolio-item fade-up" onclick="openLightbox(this)">
+<img src="images/robbery.jpg">
+<div class="overlay flex items-end p-6">
+<h3 class="font-bold">Robbery Packaging</h3>
 </div>
 </div>
 
-<!-- FIXPRO -->
-<div class="portfolio-item relative fade-up">
-<img src="images/fixpro.jpeg" class="w-full h-96 object-cover">
-<div class="overlay flex flex-col justify-end p-6">
-<h3 class="text-xl font-bold">FixPro Identity</h3>
-<p class="text-gray-400 text-sm">Facility Management Branding</p>
+<div class="portfolio-item fade-up" onclick="openLightbox(this)">
+<img src="images/fixpro.jpeg">
+<div class="overlay flex items-end p-6">
+<h3 class="font-bold">FixPro Branding</h3>
 </div>
 </div>
 
-<!-- AMUL -->
-<div class="portfolio-item relative fade-up">
-<img src="images/amul.jpg" class="w-full h-96 object-cover">
-<div class="overlay flex flex-col justify-end p-6">
-<h3 class="text-xl font-bold">Amul Travel</h3>
-<p class="text-gray-400 text-sm">Brand Identity</p>
-</div>
-</div>
-
-<!-- EID -->
-<div class="portfolio-item relative fade-up">
-<img src="images/eid.jpg" class="w-full h-96 object-cover">
-<div class="overlay flex flex-col justify-end p-6">
-<h3 class="text-xl font-bold">Eid Campaign</h3>
-<p class="text-gray-400 text-sm">Social Media Design</p>
-</div>
-</div>
-
-<!-- HIRING -->
-<div class="portfolio-item relative fade-up">
-<img src="images/hiring.jpg" class="w-full h-96 object-cover">
-<div class="overlay flex flex-col justify-end p-6">
-<h3 class="text-xl font-bold">Hiring Poster</h3>
-<p class="text-gray-400 text-sm">Recruitment Campaign</p>
-</div>
-</div>
-
-<!-- JR -->
-<div class="portfolio-item relative fade-up">
-<img src="images/jr.jpg" class="w-full h-96 object-cover">
-<div class="overlay flex flex-col justify-end p-6">
-<h3 class="text-xl font-bold">JR Advertising</h3>
-<p class="text-gray-400 text-sm">Full Brand System</p>
+<div class="portfolio-item fade-up" onclick="openLightbox(this)">
+<img src="images/amul.jpg">
+<div class="overlay flex items-end p-6">
+<h3 class="font-bold">Amul Identity</h3>
 </div>
 </div>
 
@@ -182,32 +208,52 @@ Selected <span class="gradient-text">Works</span>
 </div>
 </section>
 
-
-<!-- CONTACT -->
-<section class="py-24 text-center">
-<h2 class="text-4xl font-bold mb-6 fade-up">
-Let's Work <span class="gradient-text">Together</span>
-</h2>
-<p class="text-gray-400 mb-6 fade-up">
-Available for freelance & full-time projects.
-</p>
-<a href="mailto:agul200532@gmail.com" class="px-10 py-4 bg-purple-600 rounded-full font-semibold hover:bg-blue-600 transition">
-Contact Me
-</a>
-</section>
-
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+<img id="lightbox-img">
+</div>
 
 <script>
-const observer = new IntersectionObserver(entries=>{
+
+/* Loader */
+window.addEventListener("load",()=>{
+setTimeout(()=>{
+document.getElementById("loader").style.opacity="0";
+document.getElementById("loader").style.visibility="hidden";
+},1500);
+});
+
+/* Cursor */
+const cursor=document.getElementById("cursor");
+document.addEventListener("mousemove",e=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
+document.querySelectorAll("a, .portfolio-item").forEach(el=>{
+el.addEventListener("mouseenter",()=>cursor.classList.add("active"));
+el.addEventListener("mouseleave",()=>cursor.classList.remove("active"));
+});
+
+/* Scroll reveal */
+const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
 entry.target.classList.add("show");
 }
 });
 });
-document.querySelectorAll(".fade-up").forEach(el=>{
-observer.observe(el);
-});
+document.querySelectorAll(".fade-up").forEach(el=>observer.observe(el));
+
+/* Lightbox */
+function openLightbox(element){
+const img=element.querySelector("img").src;
+document.getElementById("lightbox-img").src=img;
+document.getElementById("lightbox").classList.add("active");
+}
+function closeLightbox(){
+document.getElementById("lightbox").classList.remove("active");
+}
+
 </script>
 
 </body>
