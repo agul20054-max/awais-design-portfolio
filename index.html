@@ -763,7 +763,7 @@
         
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         
-        function filterPortfolio(category) {
+       function filterPortfolio(event, category) {
             const items = document.querySelectorAll('.portfolio-item');
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
@@ -808,4 +808,5 @@
     </script>
 </body>
 </html>
+
 
