@@ -1,134 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Owais Gulzar | Senior Graphic Designer</title>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Al Noor -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
+        <img src="al-noor.jpg" alt="Al Noor Logo" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-teal-400 text-sm font-medium mb-2">AL NOOR • BRANDING</span>
+            <h3 class="text-2xl font-bold">Real Estate Logo</h3>
+            <p class="text-gray-300 text-sm mt-2">Complete brand identity design</p>
+        </div>
+    </div>
 
-<style>
-body { font-family: 'Poppins', sans-serif; background:#0f0f0f; color:white; }
-.portfolio-item img { transition:0.4s ease; }
-.portfolio-item:hover img { transform:scale(1.08); }
-.overlay {
-position:absolute; inset:0;
-background:linear-gradient(to top,rgba(0,0,0,0.85),transparent);
-opacity:0; transition:0.4s ease;
-display:flex; align-items:flex-end;
-padding:20px;
-}
-.portfolio-item:hover .overlay { opacity:1; }
-</style>
-</head>
+    <!-- Crispy Menu -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="print" onclick="openModal(this)">
+        <img src="menu.jpg" alt="Restaurant Menu" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-orange-400 text-sm font-medium mb-2">CRISPY DELIGHT • PRINT</span>
+            <h3 class="text-2xl font-bold">Restaurant Menu</h3>
+            <p class="text-gray-300 text-sm mt-2">A4 Menu Layout Design</p>
+        </div>
+    </div>
 
-<body>
+    <!-- KSK -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
+        <img src="ksk.jpg" alt="KSK Branding" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-gray-400 text-sm font-medium mb-2">KSK • BRANDING</span>
+            <h3 class="text-2xl font-bold">Corporate Stationery</h3>
+            <p class="text-gray-300 text-sm mt-2">Business cards & letterhead</p>
+        </div>
+    </div>
 
-<!-- HERO -->
-<section class="min-h-screen flex items-center px-8 md:px-20">
-<div class="grid md:grid-cols-2 gap-16 items-center w-full">
+    <!-- Robbery -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
+        <img src="robbery.jpg" alt="Robbery Packaging" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-green-400 text-sm font-medium mb-2">ROBBERY • PACKAGING</span>
+            <h3 class="text-2xl font-bold">Chocolate Packaging</h3>
+            <p class="text-gray-300 text-sm mt-2">Bold product branding</p>
+        </div>
+    </div>
 
-<div>
-<p class="text-purple-400 tracking-widest mb-4">SENIOR GRAPHIC DESIGNER</p>
-<h1 class="text-5xl md:text-6xl font-bold leading-tight">
-OWAIS <br>
-<span class="text-purple-500">GULZAR</span>
-</h1>
+    <!-- FixPro -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
+        <img src="fixpro.jpeg" alt="FixPro Branding" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-blue-400 text-sm font-medium mb-2">FIXPRO • BRANDING</span>
+            <h3 class="text-2xl font-bold">Facility Management Brand</h3>
+            <p class="text-gray-300 text-sm mt-2">Professional stationery suite</p>
+        </div>
+    </div>
 
-<p class="text-gray-400 mt-6 max-w-xl">
-Creative and detail-oriented Graphic Designer with 4+ years of experience.
-Specialized in branding, print media, social media design and advertising solutions in UAE.
-</p>
+    <!-- Amul -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
+        <img src="amul.jpg" alt="Amul Branding" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-blue-400 text-sm font-medium mb-2">AMUL • BRANDING</span>
+            <h3 class="text-2xl font-bold">Travel Agency Identity</h3>
+            <p class="text-gray-300 text-sm mt-2">Corporate stationery design</p>
+        </div>
+    </div>
 
-<div class="flex gap-4 mt-8">
-<a href="#work" class="bg-white text-black px-8 py-3 rounded-full font-semibold">View Work</a>
-<a href="#contact" class="border border-white px-8 py-3 rounded-full">Hire Me</a>
-</div>
-</div>
+    <!-- Eid -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)">
+        <img src="eid.jpg" alt="Eid Campaign" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-yellow-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL</span>
+            <h3 class="text-2xl font-bold">Eid Campaign</h3>
+            <p class="text-gray-300 text-sm mt-2">Festive Social Media Creative</p>
+        </div>
+    </div>
 
-<div class="flex justify-center">
-<img src="profile.jpg" class="w-80 rounded-3xl shadow-2xl" alt="Owais">
-</div>
+    <!-- Hiring -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="social" onclick="openModal(this)">
+        <img src="hiring.jpg" alt="Hiring Poster" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-purple-400 text-sm font-medium mb-2">ZAIN STAR • SOCIAL</span>
+            <h3 class="text-2xl font-bold">Job Hiring Poster</h3>
+            <p class="text-gray-300 text-sm mt-2">Recruitment Design</p>
+        </div>
+    </div>
 
-</div>
-</section>
-
-<!-- WORK -->
-<section id="work" class="px-8 md:px-20 py-24 bg-black">
-<h2 class="text-4xl font-bold mb-12 text-center">Selected Projects</h2>
-
-<div class="grid md:grid-cols-3 gap-8">
-
-<div class="portfolio-item relative rounded-xl overflow-hidden">
-<img src="al-noor.jpg" class="w-full h-80 object-cover">
-<div class="overlay"><h3 class="font-bold">Al Noor Branding</h3></div>
-</div>
-
-<div class="portfolio-item relative rounded-xl overflow-hidden">
-<img src="menu.jpg" class="w-full h-80 object-cover">
-<div class="overlay"><h3 class="font-bold">Restaurant Menu Design</h3></div>
-</div>
-
-<div class="portfolio-item relative rounded-xl overflow-hidden">
-<img src="ksk.jpg" class="w-full h-80 object-cover">
-<div class="overlay"><h3 class="font-bold">Corporate Stationery</h3></div>
-</div>
-
-<div class="portfolio-item relative rounded-xl overflow-hidden">
-<img src="robbery.jpg" class="w-full h-80 object-cover">
-<div class="overlay"><h3 class="font-bold">Packaging Design</h3></div>
-</div>
-
-<div class="portfolio-item relative rounded-xl overflow-hidden">
-<img src="fixpro.jpeg" class="w-full h-80 object-cover">
-<div class="overlay"><h3 class="font-bold">Facility Brand Identity</h3></div>
-</div>
-
-<div class="portfolio-item relative rounded-xl overflow-hidden">
-<img src="amul.jpg" class="w-full h-80 object-cover">
-<div class="overlay"><h3 class="font-bold">Travel Agency Branding</h3></div>
-</div>
-
-<div class="portfolio-item relative rounded-xl overflow-hidden">
-<img src="eid.jpg" class="w-full h-80 object-cover">
-<div class="overlay"><h3 class="font-bold">Eid Campaign</h3></div>
-</div>
-
-<div class="portfolio-item relative rounded-xl overflow-hidden">
-<img src="hiring.jpg" class="w-full h-80 object-cover">
-<div class="overlay"><h3 class="font-bold">Hiring Poster</h3></div>
-</div>
-
-<div class="portfolio-item relative rounded-xl overflow-hidden">
-<img src="jr.jpg" class="w-full h-80 object-cover">
-<div class="overlay"><h3 class="font-bold">JR Advertising Identity</h3></div>
-</div>
+    <!-- JR -->
+    <div class="portfolio-item aspect-[4/5] reveal group" data-category="branding" onclick="openModal(this)">
+        <img src="jr.jpg" alt="JR Advertising" class="w-full h-full object-cover">
+        <div class="portfolio-overlay">
+            <span class="text-orange-400 text-sm font-medium mb-2">JR ADVERTISING • BRANDING</span>
+            <h3 class="text-2xl font-bold">Agency Identity</h3>
+            <p class="text-gray-300 text-sm mt-2">Full brand system</p>
+        </div>
+    </div>
 
 </div>
-</section>
-
-<!-- ABOUT -->
-<section class="px-8 md:px-20 py-24">
-<h2 class="text-4xl font-bold mb-8 text-center">About Me</h2>
-<p class="text-gray-400 max-w-3xl mx-auto text-center leading-relaxed">
-I am a Senior Graphic Designer based in Abu Dhabi with 4+ years of experience in
-branding, advertising, and print production. I have worked with Zain Star Printing & Advertising
-and Al Hayat Printing Press delivering 100+ successful projects.
-</p>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="px-8 md:px-20 py-24 bg-black text-center">
-<h2 class="text-4xl font-bold mb-8">Let's Work Together</h2>
-<p class="text-gray-400 mb-6">Available for freelance & full-time opportunities.</p>
-
-<p class="text-lg">📞 +971 50 934 1900</p>
-<p class="text-lg">✉️ agul200532@gmail.com</p>
-
-<p class="text-gray-600 mt-12 text-sm">© 2026 Owais Gulzar</p>
-</section>
-
-</body>
-</html>
-
