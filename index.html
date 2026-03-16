@@ -231,46 +231,134 @@ section{position:relative;z-index:1}
 .recruiter-cta .rc-text p{color:var(--muted);font-size:.9rem;line-height:1.7}
 .rc-btns{display:flex;gap:10px;flex-wrap:wrap}
 
-/* ─── PORTFOLIO ─── */
+/* ─── PORTFOLIO SHOWCASE ─── */
 #portfolio{background:rgba(0,0,0,0.1)}
-.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
 .fbtn{padding:8px 18px;background:var(--glass);border:1px solid var(--border);border-radius:30px;color:var(--muted);font-size:.8rem;cursor:pointer;font-family:inherit;letter-spacing:.05em;transition:all .3s}
 .fbtn.on,.fbtn:hover{background:rgba(240,165,0,0.1);border-color:rgba(240,165,0,0.3);color:var(--gold)}
-.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.port-card{
-  position:relative;border-radius:16px;overflow:hidden;
-  aspect-ratio:4/3;cursor:pointer;
-  border:1px solid var(--border);
-  transition:all .35s;
+
+/* Thumbnail strip */
+.thumb-strip{
+  display:flex;gap:10px;overflow-x:auto;padding-bottom:12px;margin-bottom:24px;
+  scrollbar-width:thin;scrollbar-color:rgba(240,165,0,0.3) transparent;
 }
-.port-card:hover{transform:scale(1.03);border-color:rgba(240,165,0,0.3);box-shadow:0 20px 55px rgba(0,0,0,0.5),0 0 30px rgba(240,165,0,0.1)}
-.port-bg{
-  position:absolute;inset:0;
+.thumb-strip::-webkit-scrollbar{height:3px}
+.thumb-strip::-webkit-scrollbar-thumb{background:rgba(240,165,0,0.3);border-radius:3px}
+.thumb{
+  flex-shrink:0;width:90px;height:60px;border-radius:10px;overflow:hidden;
+  cursor:pointer;border:2px solid transparent;transition:all .3s;position:relative;
+}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.thumb.active{border-color:var(--gold);box-shadow:0 0 14px rgba(240,165,0,0.4)}
+.thumb:hover{border-color:rgba(240,165,0,0.5);transform:translateY(-2px)}
+
+/* Main showcase */
+.showcase-wrap{
+  position:relative;border-radius:22px;overflow:hidden;
+  background:rgba(0,0,0,0.3);border:1px solid var(--border);
+}
+.showcase-track{
+  display:flex;transition:transform .55s cubic-bezier(.77,0,.18,1);
+}
+.sc-slide{
+  flex-shrink:0;width:100%;
+  display:grid;grid-template-columns:1.15fr 1fr;
+  min-height:520px;
+}
+.sc-img-side{
+  position:relative;overflow:hidden;background:#0a0a1a;
+}
+.sc-img-side img{
+  width:100%;height:100%;object-fit:contain;
+  display:block;padding:24px;
+  transition:transform .6s ease;
+}
+.sc-slide:hover .sc-img-side img{transform:scale(1.03)}
+.sc-img-bg{
+  position:absolute;inset:0;opacity:.12;
+  background-size:cover;background-position:center;
+  filter:blur(20px);
+}
+.sc-info-side{
+  padding:48px 40px;display:flex;flex-direction:column;justify-content:center;
+  background:linear-gradient(135deg,rgba(15,8,30,0.9),rgba(8,8,20,0.95));
+}
+.sc-num{
+  font-family:'Space Mono',monospace;font-size:.72rem;
+  color:rgba(240,165,0,0.4);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;
+}
+.sc-cat{
+  font-family:'Space Mono',monospace;font-size:.75rem;
+  color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.sc-cat::before{content:'';width:28px;height:1px;background:var(--gold);display:inline-block}
+.sc-title{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;
+  line-height:1.1;margin-bottom:16px;
+}
+.sc-desc{color:var(--muted);font-size:.95rem;line-height:1.78;margin-bottom:24px}
+.sc-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
+.sc-tag{padding:5px 13px;background:rgba(240,165,0,0.07);border:1px solid rgba(240,165,0,0.14);border-radius:20px;font-size:.75rem;color:var(--gold2)}
+.sc-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 24px;background:rgba(240,165,0,0.1);
+  border:1px solid rgba(240,165,0,0.25);border-radius:30px;
+  color:var(--gold);font-size:.85rem;font-weight:600;cursor:pointer;
+  transition:all .3s;width:fit-content;
+}
+.sc-cta:hover{background:rgba(240,165,0,0.2);border-color:var(--gold);transform:translateX(4px)}
+
+/* Nav arrows */
+.sc-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:46px;height:46px;border-radius:50%;
+  background:rgba(5,5,15,0.85);border:1px solid rgba(240,165,0,0.25);
+  color:var(--gold);font-size:1.2rem;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
-  font-size:3.5rem;
-  transition:transform .4s;
+  transition:all .3s;z-index:10;backdrop-filter:blur(10px);
 }
+.sc-nav:hover{background:rgba(240,165,0,0.15);border-color:var(--gold);transform:translateY(-50%) scale(1.1)}
+.sc-prev{left:16px}
+.sc-next{right:16px}
+.sc-counter{
+  position:absolute;bottom:16px;right:20px;
+  font-family:'Space Mono',monospace;font-size:.72rem;
+  color:rgba(240,165,0,0.5);letter-spacing:.1em;
+}
+
+/* Dot indicators */
+.sc-dots{display:flex;justify-content:center;gap:7px;margin-top:18px}
+.sc-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer;transition:all .3s;border:1px solid transparent}
+.sc-dot.active{background:var(--gold);border-color:var(--gold);box-shadow:0 0 8px rgba(240,165,0,0.5);width:22px;border-radius:4px}
+
+/* Slide entrance animation */
+@keyframes slideIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+
+/* OLD port-grid kept for modal fallback */
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.port-card{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;border:1px solid var(--border);transition:all .35s}
+.port-card:hover{transform:scale(1.03);border-color:rgba(240,165,0,0.3);box-shadow:0 20px 55px rgba(0,0,0,0.5)}
+.port-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.5rem;transition:transform .4s}
 .port-card:hover .port-bg{transform:scale(1.1)}
 .port-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .port-card:hover .port-img{transform:scale(1.08)}
-.port-over{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(5,5,15,0.96) 0%,rgba(5,5,15,0.35) 55%,transparent 100%);
-  opacity:0;transition:opacity .35s;
-  display:flex;flex-direction:column;justify-content:flex-end;padding:20px;
-}
+.port-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,15,0.96) 0%,rgba(5,5,15,0.3) 55%,transparent 100%);opacity:0;transition:opacity .35s;display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
 .port-card:hover .port-over{opacity:1}
 .port-cat{font-size:.7rem;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-family:'Space Mono',monospace;margin-bottom:4px}
 .port-title{font-family:'Playfair Display',Georgia,serif;font-size:1.1rem;font-weight:700}
-.port-arrow{
-  position:absolute;top:13px;right:13px;
-  width:32px;height:32px;
-  background:rgba(240,165,0,0.9);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  color:#000;font-size:.85rem;font-weight:700;
-  opacity:0;transition:opacity .3s;
-}
+.port-arrow{position:absolute;top:13px;right:13px;width:32px;height:32px;background:rgba(240,165,0,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#000;font-size:.85rem;font-weight:700;opacity:0;transition:opacity .3s}
 .port-card:hover .port-arrow{opacity:1}
+
+@media(max-width:768px){
+  .sc-slide{grid-template-columns:1fr;min-height:auto}
+  .sc-img-side{height:240px}
+  .sc-info-side{padding:28px 22px}
+  .sc-nav{width:38px;height:38px;font-size:1rem}
+  .sc-prev{left:8px}.sc-next{right:8px}
+}
 
 /* ─── MODAL ─── */
 .modal-bg{
@@ -635,6 +723,7 @@ footer strong{color:var(--gold)}
   <h2 class="sec-title">Selected <em>Works</em></h2>
   <span class="sec-line"></span>
 
+  <!-- FILTER TABS -->
   <div class="filter-row">
     <button class="fbtn on" data-f="all">All</button>
     <button class="fbtn" data-f="branding">Branding</button>
@@ -642,7 +731,17 @@ footer strong{color:var(--gold)}
     <button class="fbtn" data-f="social">Social Media</button>
     <button class="fbtn" data-f="packaging">Packaging</button>
   </div>
-  <div class="port-grid" id="pgrid"></div>
+
+  <!-- THUMB STRIP -->
+  <div class="thumb-strip" id="thumbStrip"></div>
+
+  <!-- FULL SHOWCASE -->
+  <div class="showcase-wrap" id="showcaseWrap">
+    <button class="sc-nav sc-prev" id="scPrev">&#8592;</button>
+    <button class="sc-nav sc-next" id="scNext">&#8594;</button>
+    <div class="showcase-track" id="showcaseTrack"></div>
+    <div class="sc-counter" id="scCounter">1 / 9</div>
+  </div>
 </div>
 </section>
 
@@ -810,34 +909,111 @@ const PROJECTS = [
    tags:['Rebranding','Agency Identity','Logo Design','UAE']},
 ];
 
-function buildGrid(filter){
-  const g = document.getElementById('pgrid');
-  g.innerHTML = '';
-  const list = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.cat === filter);
-  list.forEach(p => {
-    const d = document.createElement('div');
-    d.className = 'port-card';
-    d.innerHTML = `
-      <div class="port-bg" style="background:${p.bg}">${p.icon}</div>
-      <img class="port-img" src="${p.img}" alt="${p.title}" onerror="this.style.display='none'">
-      <div class="port-arrow">↗</div>
-      <div class="port-over">
-        <div class="port-cat">${p.label}</div>
-        <div class="port-title">${p.title}</div>
-      </div>`;
-    d.onclick = () => openModal(p);
-    g.appendChild(d);
-  });
-}
-buildGrid('all');
+// ── PORTFOLIO SHOWCASE ──
+let currentFilter = 'all';
+let currentIdx = 0;
+let filtered = [];
 
+function buildShowcase(filter){
+  currentFilter = filter;
+  currentIdx = 0;
+  filtered = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.cat === filter);
+
+  // Build thumbnail strip
+  const strip = document.getElementById('thumbStrip');
+  strip.innerHTML = '';
+  filtered.forEach((p, i) => {
+    const t = document.createElement('div');
+    t.className = 'thumb' + (i===0?' active':'');
+    t.innerHTML = `<img src="${p.img}" alt="${p.title}" onerror="this.parentElement.innerHTML='<div class=thumb-bg>${p.icon}</div>'">`;
+    t.onclick = () => goTo(i);
+    strip.appendChild(t);
+  });
+
+  // Build slides
+  const track = document.getElementById('showcaseTrack');
+  track.innerHTML = '';
+  filtered.forEach((p, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'sc-slide';
+    slide.innerHTML = `
+      <div class="sc-img-side">
+        <div class="sc-img-bg" style="background-image:url('${p.img}')"></div>
+        <img src="${p.img}" alt="${p.title}" onerror="this.style.display='none';this.parentElement.style.background='${p.bg}'">
+      </div>
+      <div class="sc-info-side">
+        <div class="sc-num">0${i+1} / 0${filtered.length}</div>
+        <div class="sc-cat">${p.label}</div>
+        <div class="sc-title">${p.title}</div>
+        <div class="sc-desc">${p.desc}</div>
+        <div class="sc-tags">${p.tags.map(t=>`<span class="sc-tag">${t}</span>`).join('')}</div>
+        <div class="sc-cta" onclick="openModal(filtered[${i}])">View Details &#8594;</div>
+      </div>`;
+    track.appendChild(slide);
+  });
+
+  // Build dots
+  let dots = document.getElementById('sc-dots');
+  if(dots) dots.remove();
+  dots = document.createElement('div');
+  dots.className = 'sc-dots'; dots.id = 'sc-dots';
+  filtered.forEach((_,i)=>{
+    const d = document.createElement('div');
+    d.className = 'sc-dot'+(i===0?' active':'');
+    d.onclick = () => goTo(i);
+    dots.appendChild(d);
+  });
+  document.getElementById('showcaseWrap').after(dots);
+
+  goTo(0, true);
+}
+
+function goTo(idx, instant){
+  currentIdx = Math.max(0, Math.min(idx, filtered.length-1));
+  const track = document.getElementById('showcaseTrack');
+  if(instant) track.style.transition = 'none';
+  track.style.transform = `translateX(-${currentIdx * 100}%)`;
+  if(instant) setTimeout(()=>track.style.transition='',50);
+
+  // update thumbs
+  document.querySelectorAll('.thumb').forEach((t,i)=>t.classList.toggle('active',i===currentIdx));
+  // update dots
+  document.querySelectorAll('.sc-dot').forEach((d,i)=>d.classList.toggle('active',i===currentIdx));
+  // update counter
+  document.getElementById('scCounter').textContent = `${currentIdx+1} / ${filtered.length}`;
+  // scroll thumb into view
+  const strip = document.getElementById('thumbStrip');
+  const activeTh = strip.querySelectorAll('.thumb')[currentIdx];
+  if(activeTh) activeTh.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+}
+
+document.getElementById('scNext').onclick = () => goTo(currentIdx < filtered.length-1 ? currentIdx+1 : 0);
+document.getElementById('scPrev').onclick = () => goTo(currentIdx > 0 ? currentIdx-1 : filtered.length-1);
+
+// keyboard navigation
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight') goTo(currentIdx < filtered.length-1 ? currentIdx+1 : 0);
+  if(e.key==='ArrowLeft')  goTo(currentIdx > 0 ? currentIdx-1 : filtered.length-1);
+});
+
+// touch swipe
+let touchX = 0;
+document.getElementById('showcaseTrack').addEventListener('touchstart', e => touchX = e.touches[0].clientX);
+document.getElementById('showcaseTrack').addEventListener('touchend', e => {
+  const diff = touchX - e.changedTouches[0].clientX;
+  if(Math.abs(diff) > 40) diff > 0 ? goTo(currentIdx+1) : goTo(currentIdx-1);
+});
+
+// filter buttons
 document.querySelectorAll('.fbtn').forEach(b => {
   b.addEventListener('click', () => {
     document.querySelectorAll('.fbtn').forEach(x => x.classList.remove('on'));
     b.classList.add('on');
-    buildGrid(b.dataset.f);
+    buildShowcase(b.dataset.f);
   });
 });
+
+buildShowcase('all');
 
 // MODAL
 function openModal(p){
