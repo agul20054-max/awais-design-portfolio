@@ -91,7 +91,7 @@ nav.sc{padding:12px 6%;background:rgba(5,5,15,0.95);border-bottom-color:rgba(240
 }
 .hero-grid{
   display:grid;
-  grid-template-columns:1fr 360px;
+  grid-template-columns:1fr 440px;
   gap:60px;
   align-items:center;
   width:100%;max-width:1280px;margin:0 auto;
@@ -136,40 +136,38 @@ nav.sc{padding:12px 6%;background:rgba(5,5,15,0.95);border-bottom-color:rgba(240
 .btn-ghost:hover{background:rgba(255,255,255,0.1);transform:translateY(-3px)}
 
 /* right – photo */
-.photo-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
+.photo-wrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:16px}
 .photo-ring{
-  width:300px;height:300px;border-radius:50%;
+  width:420px;height:420px;border-radius:24px;
   padding:3px;
   background:linear-gradient(135deg,var(--gold),var(--orange),var(--gold));
   position:relative;
-  box-shadow:0 0 60px rgba(240,165,0,0.25);
+  box-shadow:0 0 80px rgba(240,165,0,0.2), 0 30px 80px rgba(0,0,0,0.5);
 }
 .photo-ring::before{
-  content:'';position:absolute;inset:-10px;border-radius:50%;
-  border:1px dashed rgba(240,165,0,0.25);
+  content:'';position:absolute;inset:-12px;border-radius:28px;
+  border:1px dashed rgba(240,165,0,0.2);
   animation:spin 22s linear infinite;
 }
 @keyframes spin{to{transform:rotate(360deg)}}
 .photo-inner{
-  width:100%;height:100%;border-radius:50%;overflow:hidden;
+  width:100%;height:100%;border-radius:22px;overflow:hidden;
   background:linear-gradient(135deg,#1a0a3a,#0a1530);
-  display:flex;align-items:center;justify-content:center;
 }
 .photo-inner img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
 .photo-label{
-  margin-top:20px;
   background:linear-gradient(135deg,var(--gold),var(--orange));
-  color:#000;font-size:.72rem;font-weight:800;letter-spacing:.12em;
-  text-transform:uppercase;padding:7px 20px;border-radius:20px;
+  color:#000;font-size:.75rem;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;padding:8px 24px;border-radius:20px;
   box-shadow:0 6px 20px rgba(240,165,0,0.4);
 }
 .avail-chip{
-  position:absolute;bottom:-5px;right:-10px;
-  background:rgba(5,5,15,0.9);border:1px solid rgba(46,204,113,0.4);
+  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  background:rgba(5,5,15,0.88);border:1px solid rgba(46,204,113,0.4);
   backdrop-filter:blur(10px);border-radius:30px;
-  padding:7px 14px;font-size:.75rem;font-weight:600;
-  display:flex;align-items:center;gap:6px;
-  box-shadow:0 4px 20px rgba(0,0,0,0.4);
+  padding:8px 16px;font-size:.78rem;font-weight:600;white-space:nowrap;
+  display:flex;align-items:center;gap:7px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5);
 }
 
 /* ─── SECTION BASE ─── */
@@ -263,22 +261,25 @@ section{position:relative;z-index:1}
 }
 .sc-slide{
   flex-shrink:0;width:100%;
-  display:grid;grid-template-columns:1.15fr 1fr;
-  min-height:520px;
+  display:grid;grid-template-columns:1.2fr 1fr;
+  min-height:500px;
 }
 .sc-img-side{
-  position:relative;overflow:hidden;background:#0a0a1a;
+  position:relative;overflow:hidden;background:#0a0a1a;min-height:500px;
 }
 .sc-img-side img{
-  width:100%;height:100%;object-fit:contain;
-  display:block;padding:24px;
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center center;
+  display:block;
   transition:transform .6s ease;
 }
-.sc-slide:hover .sc-img-side img{transform:scale(1.03)}
+.sc-slide:hover .sc-img-side img{transform:scale(1.05)}
 .sc-img-bg{
-  position:absolute;inset:0;opacity:.12;
+  position:absolute;inset:0;opacity:.15;
   background-size:cover;background-position:center;
-  filter:blur(20px);
+  filter:blur(25px);transform:scale(1.1);
 }
 .sc-info-side{
   padding:48px 40px;display:flex;flex-direction:column;justify-content:center;
@@ -354,7 +355,7 @@ section{position:relative;z-index:1}
 
 @media(max-width:768px){
   .sc-slide{grid-template-columns:1fr;min-height:auto}
-  .sc-img-side{height:240px}
+  .sc-img-side{height:240px;min-height:240px}
   .sc-info-side{padding:28px 22px}
   .sc-nav{width:38px;height:38px;font-size:1rem}
   .sc-prev{left:8px}.sc-next{right:8px}
@@ -601,11 +602,11 @@ footer strong{color:var(--gold)}
       <div class="photo-ring">
         <div class="photo-inner">
           <img src="images/profile.jpg" alt="Owais Gulzar"
-               onerror="this.parentElement.innerHTML='<div style=\'text-align:center;padding:20px;color:rgba(240,165,0,.4)\'><div style=\'font-size:5rem\'>👤</div><p style=\'font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;margin-top:8px\'>Add profile.jpg<br>to images folder</p></div>'">
+               onerror="this.parentElement.innerHTML='<div style=\'width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:rgba(240,165,0,.3)\'><div style=\'font-size:6rem\'>👤</div><p style=\'font-size:.75rem;letter-spacing:.1em;text-transform:uppercase\'>profile.jpg</p></div>'">
         </div>
+        <div class="avail-chip"><span class="dot-pulse"></span> Available for Work</div>
       </div>
-      <div class="avail-chip"><span class="dot-pulse"></span> Available for Work</div>
-      <div class="photo-label">Senior Designer</div>
+      <div class="photo-label">Senior Graphic Designer · Abu Dhabi UAE</div>
     </div>
   </div>
 </section>
